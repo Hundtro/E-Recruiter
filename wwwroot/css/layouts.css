@@ -1,0 +1,31 @@
+html, body{
+    margin: 0cm;
+    height: 100%;
+    border-width: thin;
+    border-style: solid;
+    border-color:red;
+    background-color: blue;
+}
+
+.page{
+    background-color: white;
+    margin-left: 5cm;
+    margin-right: 5cm;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    overflow: auto;
+}
+
+.content{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+}
+
+.footer{
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    text-align: center;
+}

@@ -1,0 +1,6 @@
+.vscode/
+Properties/
+*json
+bin/
+obj/
+tests/
