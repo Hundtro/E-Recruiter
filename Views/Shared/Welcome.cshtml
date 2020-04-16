@@ -1,18 +1,19 @@
 <link rel="stylesheet" href="~/css/layouts.css"/>
 <link rel="stylesheet" href="~/css/welcome.css"/>
 <div class="page">
-    <div class="content">
-        <div class="title_text">E-Recruiter</div>
-        <div class="welcome_text">
+    <div class="title_text">
+        E-Recruiter
+    </div>    
+    <div class="welcome_text">
             Welcome!<br>
-            This is demo version of recruiter web application. Project was created for educational goals. Do not try use it. The author is not responsible for the damage caused by this software.<br>
-            <hr>
+            This is a demo version of the recruiter web application. The project was created 
+            for educational goals. Do not try to use it. The author is not responsible for 
+            the damage caused by this software.<br><hr>
             <input
                 type="button"
                 value="Start"
                 class="button_text"
                 onclick="location.href='/Home'"/>
-        </div>
     </div>
     @await Html.PartialAsync("_Footer")
 </div>

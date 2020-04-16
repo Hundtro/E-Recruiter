@@ -9,23 +9,16 @@ html, body{
 
 .page{
     background-color: white;
-    margin-left: 5cm;
-    margin-right: 5cm;
+    margin-left: 200px;
+    margin-right: 200px;
     height: 100%;
+    overflow: auto;
+    padding: 0px;
     display: flex;
     flex-flow: column;
-    overflow: auto;
-}
-
-.content{
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
 }
 
 .footer{
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
+    height: 100px;
     text-align: center;
 }
