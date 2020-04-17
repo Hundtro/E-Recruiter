@@ -4,3 +4,4 @@ Properties/
 bin/
 obj/
 tests/
+Data/data.db
