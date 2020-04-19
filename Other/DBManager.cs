@@ -65,27 +65,4 @@ namespace erecruiter
             return dataReader[name].ToString();
         }
     }
-
-    /*class Program
-    {
-        static void Main(string[] args)
-        {
-            String val = "";
-
-            DBManager dBManager = new DBManager();
-            try
-            {
-                dBManager.ExecuteSelectCommand(SqlQueries.TestQuery());
-                dBManager.MoveToNextRow();
-                val = dBManager.GetColumnValue(1);
-                dBManager.ClearData();
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            Console.WriteLine(val);
-        }
-    }*/
 }
