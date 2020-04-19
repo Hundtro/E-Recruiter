@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace web
+namespace erecruiter
 {
     public class HomeController : Controller
     {
