@@ -1,6 +1,6 @@
 .vscode/
 Properties/
-*json
+appsettings*json
 bin/
 obj/
 tests/

@@ -1,4 +1,5 @@
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.DependencyInjection; 
 
 namespace erecruiter
 {
@@ -9,11 +10,11 @@ namespace erecruiter
         private SqliteCommand command;
         private SqliteDataReader dataReader;
 
-        public DBManager()
+        public DBManager() //database as argument
         {
             connectionString = new SqliteConnectionStringBuilder()
             {
-                DataSource = "./data.db" //Replace to config?
+                DataSource = "./data.db"//Configuration["database"];//Replace to config?
             };
                 
             connection = new SqliteConnection(connectionString.ConnectionString);

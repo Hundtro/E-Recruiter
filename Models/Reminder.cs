@@ -4,5 +4,6 @@ namespace erecruiter
     {
         public int id;
         public string value;
+        public string created;
     }
 }
