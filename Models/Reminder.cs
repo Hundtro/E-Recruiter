@@ -1,9 +1,9 @@
 namespace erecruiter
 {
-    class Reminder 
+    public class Reminder 
     {
-        public int id;
-        public string value;
-        public string created;
+        public string Id { get; set;}
+        public string Value { get; set; }
+        public string Created { get; set; }
     }
 }

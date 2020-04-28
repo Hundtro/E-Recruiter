@@ -10,11 +10,11 @@ namespace erecruiter
         private SqliteCommand command;
         private SqliteDataReader dataReader;
 
-        public DBManager() //database as argument
+        public DBManager(string dbsource)
         {
             connectionString = new SqliteConnectionStringBuilder()
             {
-                DataSource = "./data.db"//Configuration["database"];//Replace to config?
+                DataSource = dbsource
             };
                 
             connection = new SqliteConnection(connectionString.ConnectionString);
