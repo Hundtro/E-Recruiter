@@ -7,43 +7,25 @@ namespace erecruiter
     public class HomeController : Controller
     {
         private IConfiguration configuration;
-        private DBManager dbmanager;
+        private DatabaseManager dbmanager;
 
         public HomeController(IConfiguration configuration)
         {
             this.configuration = configuration;
-            dbmanager = new DBManager(configuration["database"]);
+            dbmanager = new DatabaseManager(configuration["database"]);
         }
 
         [Route("/Home")]
         [Route("/Home/Index")]
         public IActionResult Index()
         {
-            ViewData["Reminders"] = GetReminders();
+            ViewData["Reminders"] = dbmanager.GetReminders();
             return View();
         }
         [Route("/")]
         public IActionResult Welcome()
         {
             return View();
-        }
-
-        private List<Reminder> GetReminders()
-        {
-            List<Reminder> reminders = new List<Reminder>();
-
-            dbmanager.ExecuteSelectCommand(SqlCommands.SelectReminders());
-            while(dbmanager.MoveToNextRow())
-            {
-                Reminder reminder = new Reminder();
-                reminder.Id = dbmanager.GetColumnValue("Id");
-                reminder.Value = dbmanager.GetColumnValue("Value");
-                reminder.Created = dbmanager.GetColumnValue("Created");
-                reminders.Add(reminder);
-            }
-            dbmanager.ClearData();
-
-            return reminders;
         }
     }
 }

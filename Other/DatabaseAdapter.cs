@@ -1,16 +1,15 @@
 using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.DependencyInjection; 
 
 namespace erecruiter
 {
-    class DBManager
+    class DatabaseAdapter
     {
         private SqliteConnectionStringBuilder connectionString;
         private SqliteConnection connection;
         private SqliteCommand command;
         private SqliteDataReader dataReader;
 
-        public DBManager(string dbsource)
+        public DatabaseAdapter(string dbsource)
         {
             connectionString = new SqliteConnectionStringBuilder()
             {
@@ -20,7 +19,7 @@ namespace erecruiter
             connection = new SqliteConnection(connectionString.ConnectionString);
         }
 
-        public int ExecuteEditCommand(string query)
+        public int ExecuteCommand(string query)
         {
             int rows = 0;
             connection.Open();
