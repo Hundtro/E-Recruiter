@@ -1,5 +1,5 @@
 @{
-    var reminders = ViewData["Reminders"] as List<erecruiter.Reminder>;
+	var reminders = ViewData["Reminders"] as List<erecruiter.Reminder>;
 }
 
 <link rel="stylesheet" href="~/css/layouts.css"/>
@@ -16,8 +16,23 @@
             <li><a href="/">About</a></li>
         </ul>
     </div>
-    <div class="reminder">
-        <b>Reminder implementation is in progress!</b>
-    </div>
+        @if (reminders.Count!=0)
+        {
+			<div class="reminders">
+				<b>Reminders exist!</b>
+			</div> 
+		}
+		else
+		{
+			<div class="reminders_empty">
+				<p class="reminders_empty_title">Reminders</p>
+				<p class="reminders_empty_text">You do not have any	active reminders</p>
+				<input
+					type="button"
+					value="Add reminder"
+					class="button_text"
+					onclick="location.href='/Home/AddRemidner'"/>
+			</div>
+		}
     @await Html.PartialAsync("_Footer")
 </div>
