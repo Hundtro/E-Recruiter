@@ -4,7 +4,7 @@ html, body{
     border-width: thin;
     border-style: solid;
     border-color: red;
-    background-color: grey;
+    background-color: blue;
 }
 
 .page{
@@ -16,6 +16,27 @@ html, body{
     padding: 0px;
     display: flex;
     flex-flow: column;
+}
+
+.menu {
+    background-color: black;
+    margin: 0px;
+}
+  
+.menu li {
+    display: inline-block;
+}
+  
+.menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 16px;
+}
+  
+.menu li a:hover {
+    background-color: grey;
 }
 
 .footer{

@@ -1,6 +1,6 @@
 namespace erecruiter
 {
-    class SqlCommands
+    class SqlProcedures
     {
         public static string SelectReminders()
         {
@@ -9,12 +9,12 @@ namespace erecruiter
             return query;
         }
 
-        public static string AddReminder(string value)
+        public static string InsertReminder(string value)
         {
             string query = "INSERT INTO main.Reminder ";
                    query += "(Value, Created) VALUES ('";
                    query += value + "', ";
-                   query += "SELECT date('now'))";
+                   query += "date('now'))";
             
             return query;
         }
