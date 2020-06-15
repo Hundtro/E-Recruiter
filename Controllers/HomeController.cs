@@ -32,5 +32,11 @@ namespace erecruiter
         {
             return View();
         }
+
+		[Route("/Home/NewEmployee")]
+		public IActionResult NewEmployee()
+		{
+            return View();
+        }
     }
 }

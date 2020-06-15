@@ -21,10 +21,31 @@ namespace erecruiter
 
         public static string DeleteReminder(string id)
         {
-            string query = "DELETE main.Reminder ";
+            string query = "DELETE FROM main.Reminder ";
                    query += "WHERE Id=" + id;
 
             return query;
         }
+
+		public static string SelectWorkers()
+		{
+			string query = "SELECT * FROM main.Worker";
+
+			return query;
+		}
+
+		public static string InserWorker(Worker worker)
+		{
+			string query = "INSERT INTO main.Worker ";
+			//map parameters
+			return query;
+		}
+
+		public static string DeleleWorker(string Id)
+		{
+			string query = "";
+
+			return query;
+		}
     }
 }

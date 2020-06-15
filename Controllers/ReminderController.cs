@@ -42,5 +42,15 @@ namespace erecruiter
 
             return Redirect("/Home/Index");
         }
+
+        [HttpPost]
+        [Route("/DeleteReminder")]
+        public IActionResult DeleteReminder(string Id)
+        {
+            if(!string.IsNullOrEmpty(Id))
+                dbAdapter.ExecuteCommand(SqlProcedures.DeleteReminder(Id));
+
+            return Redirect("/Home/Index");
+        }
     }
 }

@@ -6,23 +6,43 @@
 <link rel="stylesheet" href="~/css/index.css"/>
 <div class="page">
 	@await Html.PartialAsync("_Menu")
-        @if (reminders.Count!=0)
-        {
-			<div class="reminders">
-				<b>Reminders exist!</b>
-			</div> 
-		}
-		else
-		{
-			<div class="reminders_empty">
-				<p class="reminders_empty_title">Reminders</p>
-				<p class="reminders_empty_text">You do not have any	active reminders</p>
-				<input
-					type="button"
-					value="Add reminder"
-					class="button_text"
-					onclick="location.href='/Home/AddReminder'"/>
-			</div>
-		}
+    @if (reminders.Count!=0)
+    {
+		<div class="reminders">
+			<div>Reminders</div>
+			<table class="reminders-table">
+				<tr>
+                	<th>Id</th>
+					<th>Text</th>
+					<th>Created</th>
+					<th>Actions</th>
+            	</tr>
+				@for(int i = 0; i < reminders.Count; i++)
+				{
+					<form action="/DeleteReminder" method="post">
+					<tr>
+						<td><input type="hidden" name="Id" value="@reminders[i].Id"/>@reminders[i].Id</td>
+						<td>@reminders[i].Value</td>
+						<td>@reminders[i].Created</td>
+						<td><input type="submit" value="Delete" class="button_text"/></td>
+					</tr>
+					</form>
+				}
+			</table>
+			<input type="button" value="Add Reminder" class="button_text" onclick="location.href='/Home/AddReminder'"/>
+		</div>
+	}
+	else
+	{
+		<div class="reminders_empty">
+			<p class="reminders_empty_title">Reminders</p>
+			<p class="reminders_empty_text">You do not have any	active reminders</p>
+			<input
+				type="button"
+				value="Add reminder"
+				class="button_text"
+				onclick="location.href='/Home/AddReminder'"/>
+		</div>
+	}
     @await Html.PartialAsync("_Footer")
 </div>
