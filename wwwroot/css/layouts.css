@@ -4,7 +4,9 @@ html, body{
     border-width: thin;
     border-style: solid;
     border-color: red;
-    background-color: blue;
+    background-image: url(../images/back_image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .page{
