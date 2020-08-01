@@ -2,11 +2,10 @@
 	var reminders = ViewData["Reminders"] as List<erecruiter.Reminder>;
 }
 
-<link rel="stylesheet" href="~/css/layouts.css"/>
-<link rel="stylesheet" href="~/css/index.css"/>
-<div class="page">
+<link rel="stylesheet" href="~/css/home.css"/>
+<div class="content">
 	@await Html.PartialAsync("_Menu")
-    @if (reminders.Count!=0)
+    <@if (reminders.Count!=0)
     {
 		<div class="reminders">
 			<div>Reminders</div>

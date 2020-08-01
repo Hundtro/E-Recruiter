@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="/home/winter/projects/erecruiter/wwwroot/css/home.css"/>
+<div class="content">
+    <div class="menu">
+        <ul>
+            <li><a href="/Home">Home</a></li>
+            <li><a href="#todo">New recruit process</a></li>
+            <li><a href="#todo">Manage recruitment</a></li>
+            <li><a href="/Home/NewEmployee">New employee</a></li>
+            <li><a href="#todo">Find employee</a></li>
+            <li><a href="#todo">Contact employee</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+    </div>
+    <div class="logged-info">
+        <p>Good day to you, USERNAME</p>
+        <br>
+    </div>
+    <div class="reminders">
+        <p>Reminders</p>
+        <table class="reminders-table">
+            <tr>
+                <th>Id</th>
+                <th>Text</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+            <form action="/DeleteReminder" method="post">
+            <tr>
+                <td><input type="hidden" name="Id" value="@reminders[i].Id"/>@reminders[i].Id</td>
+                <td>@reminders[i].Value</td>
+                <td>@reminders[i].Created</td>
+                <td><input class="button-delete" type="submit" value="Delete" class="button_text"/></td>
+            </tr>
+            </form>
+            <form action="/DeleteReminder" method="post">
+            <tr>
+                <td><input type="hidden" name="Id" value="@reminders[i].Id"/>1234</td>
+                <td>Test reminder - short length</td>
+                <td>2020-07-30</td>
+                <td><input class="button-delete" type="submit" value="Delete" class="button_text"/></td>
+            </tr>
+            </form>
+            <form action="/DeleteReminder" method="post">
+            <tr>
+                <td><input type="hidden" name="Id" value="@reminders[i].Id"/>1235</td>
+                <td>Test reminder - this time it is a long text that need to be cuted. This very long text must be placed in several lines</td>
+                <td>2020-07-30</td>
+                <td><input class="button-delete" type="submit" value="Delete" class="button_text"/></td>
+            </tr>
+            </form>
+			<form action="/DeleteReminder" method="post">
+            <tr>
+                <td><input type="hidden" name="Id" value="@reminders[i].Id"/>1111</td>
+                <td>Test reminder - Spam</td>
+                <td>2020-07-30</td>
+                <td><input class="button-delete" type="submit" value="Delete" class="button_text"/></td>
+            </tr>
+            </form>
+            <form action="/DeleteReminder" method="post">
+            <tr>
+                <td><input type="hidden" name="Id" value="@reminders[i].Id"/>1111</td>
+                <td>Test reminder - Spam</td>
+                <td>2020-07-30</td>
+                <td><input class="button-delete" type="submit" value="Delete" class="button_text"/></td>
+            </tr>
+            </form>
+            <form action="/DeleteReminder" method="post">
+            <tr>
+                <td><input type="hidden" name="Id" value="@reminders[i].Id"/>1111</td>
+                <td>Test reminder - Spam</td>
+                <td>2020-07-30</td>
+                <td><input class="button-delete" type="submit" value="Delete" class="button_text"/></td>
+            </tr>
+            </form>
+            <form action="/DeleteReminder" method="post">
+            <tr>
+                <td><input type="hidden" name="Id" value="@reminders[i].Id"/>1111</td>
+                <td>Test reminder - Spam</td>
+                <td>2020-07-30</td>
+                <td><input class="button-delete" type="submit" value="Delete" class="button_text"/></td>
+            </tr>
+            </form>
+            <form action="/DeleteReminder" method="post">
+            <tr>
+                <td><input type="hidden" name="Id" value="@reminders[i].Id"/>1111</td>
+                <td>Test reminder - Spam</td>
+                <td>2020-07-30</td>
+                <td><input class="button-delete" type="submit" value="Delete" class="button_text"/></td>
+            </tr>
+            </form>
+            <form action="/DeleteReminder" method="post">
+            <tr>
+                <td><input type="hidden" name="Id" value="@reminders[i].Id"/>1111</td>
+                <td>Test reminder - Spam</td>
+                <td>2020-07-30</td>
+                <td><input class="button-delete" type="submit" value="Delete" class="button_text"/></td>
+            </tr>
+            </form>
+        </table>
+        <br>
+        <input class="button-add" type="button" value="Add reminder" onclick="location.href='/Home/AddReminder'"/>
+        <br><br>
+    </div>
+    <div class="footer">
+        <br> Copyright@2020 Dmytro Svynarchuk
+        <br>Warsaw, Poland
+        <br>All rights reserved.
+        <br><br>
+    </div>
+</div>

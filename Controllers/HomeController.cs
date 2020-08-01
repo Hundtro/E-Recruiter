@@ -22,8 +22,9 @@ namespace erecruiter
         }
 
         [Route("/")]
-        public IActionResult Welcome()
+        public IActionResult Login()
         {
+            //TODO: if logged - return /Home
             return View();
         }
         

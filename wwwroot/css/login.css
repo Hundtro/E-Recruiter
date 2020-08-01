@@ -1,0 +1,50 @@
+@import "body.css";
+
+.header {
+    background-color: black;
+    color: red;
+    text-align: center;
+    font-size: 50px;
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 10%;
+}
+
+.login {
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    border-width: 4px;
+    margin-left: 60%;
+    margin-right: 15%;
+    height: 40%;
+    width: 25%;
+}
+
+.login p {
+    text-align: center;
+}
+
+.inputer {
+    display: block;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    width: 60%;
+    margin-left: 20%;
+}
+
+.button:hover {
+    background-color: grey;
+}

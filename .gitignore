@@ -3,5 +3,4 @@ Properties/
 appsettings*json
 bin/
 obj/
-tests/
 Data/data.db
