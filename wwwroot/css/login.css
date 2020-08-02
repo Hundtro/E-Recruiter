@@ -31,20 +31,9 @@
     margin-left: 5%;
 }
 
-.button {
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 15px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+.button-start {
     font-size: 15px;
-    cursor: pointer;
+    padding: 5%; 
     width: 60%;
     margin-left: 20%;
-}
-
-.button:hover {
-    background-color: grey;
 }

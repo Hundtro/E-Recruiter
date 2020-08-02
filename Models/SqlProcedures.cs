@@ -27,21 +27,21 @@ namespace erecruiter
             return query;
         }
 
-		public static string SelectWorkers()
+		public static string SelectCandidates()
 		{
-			string query = "SELECT * FROM main.Worker";
+			string query = "SELECT * FROM main.Candidate";
 
 			return query;
 		}
 
-		public static string InserWorker(Worker worker)
+		public static string InserCandidate(Candidate candidate)
 		{
-			string query = "INSERT INTO main.Worker ";
+			string query = "INSERT INTO main.Candidate ";
 			//map parameters
 			return query;
 		}
 
-		public static string DeleleWorker(string Id)
+		public static string DeleleDelete(string Id)
 		{
 			string query = "";
 

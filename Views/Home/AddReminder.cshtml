@@ -1,22 +1,16 @@
-<link rel="stylesheet" href="~/css/layouts.css"/>
 <link rel="stylesheet" href="~/css/add-reminder.css"/>
-<div class="page">
+<div class="content">
     @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>Add reminder</p>
+        <hr>
+    </div>
     <div class="reminder-add">
-        <table class="addtable">
-            <tr>
-                <th>Add reminder</th>
-            </tr>
-            <tr>
-                <td>
-                    <form action="/InsertReminder" method="post">
-                        <br>
-                        <input class="input_text" type="text" name="text"><br><br>
-                        <input class="input_button" type="submit" value="Add">
-                    </form>
-                </td>
-            </tr>
-        </table>
+        <form action="/InsertReminder" method="post">
+            <textarea rows=6 cols=40 name="text">Reminder text...</textarea>
+            <br>
+            <input class="button button-input" type="submit" value="Add">
+        </form>
     </div>
     @await Html.PartialAsync("_Footer")
 </div>

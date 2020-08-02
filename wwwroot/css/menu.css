@@ -1,20 +1,15 @@
-.menu ul {
+.menu {
     background-color: black;
-    margin: 0px;
 }
-  
-.menu li {
+
+.menu a {
     display: inline-block;
-}
-  
-.menu li a {
-    display: block;
     color: white;
     text-align: center;
     text-decoration: none;
-    padding: 16px;
+    padding: 2%;
 }
-  
-.menu li a:hover {
+
+.menu a:hover {
     background-color: grey;
 }
