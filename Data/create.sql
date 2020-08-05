@@ -27,13 +27,13 @@ CREATE TABLE Candidates (
     "Id"           INTEGER PRIMARY KEY AUTOINCREMENT,
     "Name"         TEXT NOT NULL,
     "Surname"      TEXT NOT NULL,
-	"BirthDate"    TEXT NOT NULL,
-	"Gender"       TEXT NOT NULL,
-	"WantedSalary" TEXT,
-	"Email"        TEXT,
-	"MobilePhone"  TEXT,
-	"HomeOffice"   INTEGER NOT NULL,
-	"ExWorker"     INTEGER NOT NULL,
+    "BirthDate"    TEXT NOT NULL,
+    "Gender"       TEXT NOT NULL,
+    "WantedSalary" TEXT,
+    "Email"        TEXT,
+    "MobilePhone"  TEXT,
+    "HomeOffice"   INTEGER NOT NULL,
+    "ExWorker"     INTEGER NOT NULL,
     "Photo"        BLOB,
     "CVFile"       BLOB,
     "CreatedBy"    INTEGER NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE Candidates (
 );
 
 CREATE TABLE JobTitles (
-    "Id"	        INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Id"	    INTEGER PRIMARY KEY AUTOINCREMENT,
     "Title"         TEXT NOT NULL,
     "DefaultSalary" TEXT NOT NULL,
     "Description"   TEXT,
@@ -56,11 +56,11 @@ CREATE TABLE Experience (
     "Title"         TEXT NOT NULL,
     "StartDate"     TEXT NOT NULL,
     "EndDate"       TEXT NOT NULL,
-	FOREIGN KEY(CandidateId) REFERENCES Candidates(Id)
+    FOREIGN KEY(CandidateId) REFERENCES Candidates(Id)
 );
 
 CREATE TABLE HireSteps (
-    "Id"			INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Id"            INTEGER PRIMARY KEY AUTOINCREMENT,
     "JobTitleId"    INTEGER NOT NULL,
     "Order"         INTEGER,
     "Name"          TEXT NOT NULL,
@@ -84,4 +84,3 @@ CREATE TABLE HireProcess (
 INSERT INTO main.Users ("Login", "Password", "FullName", "CanEdit", "CanConfig") VALUES ("admin", "admin", "admin", 1, 1);  
 INSERT INTO main.JobTitles ("Title", "DefaultSalary", "CreatedBy") VALUES ('General', 0, (SELECT Id FROM main.Users WHERE Login ='admin'));
 INSERT INTO main.HireSteps ("JobTitleId", "Order", "Name") VALUES ((SELECT Id FROM main.JobTitles WHERE Title = 'General'), 1, 'Default');
-
