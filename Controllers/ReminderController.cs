@@ -24,7 +24,7 @@ namespace erecruiter
             {
                 Reminder reminder = new Reminder();
                 reminder.Id = dbAdapter.GetColumnValue("Id");
-                reminder.Value = dbAdapter.GetColumnValue("Value");
+                reminder.Text = dbAdapter.GetColumnValue("Text");
                 reminder.Created = dbAdapter.GetColumnValue("Created");
                 reminders.Add(reminder);
             }

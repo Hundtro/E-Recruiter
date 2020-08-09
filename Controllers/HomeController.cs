@@ -13,31 +13,81 @@ namespace erecruiter
             this.configuration = configuration;
         }
 
+        [Route("/CheckLogin")]
+        public IActionResult CheckLogin(string login, string password)
+        {
+            Session.Login = login;
+            Session.Password = password;
+            
+            bool isLoginSucces = new LoginController(this.configuration).Login();
+            
+            if(isLoginSucces)
+            {
+                Session.isLogged = true;
+                return Redirect("/Home");
+            }
+            else
+            {
+                return Redirect("/LoginError");
+            }
+        }
+
+        [Route("/LoginError")]
+        public IActionResult LoginError()
+        {
+            return View();
+        }
+
         [Route("/Home")]
         [Route("/Home/Index")]
         public IActionResult Index()
         {
-            ViewData["Reminders"] = new ReminderController(this.configuration).GetReminders();
-            return View();
+            if(Session.isLogged)
+            {
+                ViewData["UserName"] = Session.FullName;
+                ViewData["Reminders"] = new ReminderController(this.configuration).GetReminders(); //by userId
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
         }
 
         [Route("/")]
         public IActionResult Login()
         {
-            //TODO: if logged - return /Home
-            return View();
+            if(Session.isLogged)
+                return Redirect("/Home");
+            else
+                return View(); 
         }
         
         [Route("/Home/AddReminder")]
         public IActionResult AddReminder()
         {
-            return View();
+            if(Session.isLogged)
+                return View();
+            else
+                return Redirect("/");
         }
 
-		[Route("/Home/NewEmployee")]
-		public IActionResult NewEmployee()
+		[Route("/Home/NewCandidate")]
+		public IActionResult NewCandidate()
 		{
-            return View();
+            if(Session.isLogged)    
+                return View();
+            else
+                return Redirect("/");
+        }
+
+        //another actions
+        
+        [Route("/Logout")]
+        public IActionResult Logout()
+        {
+            Session.isLogged = false;
+            return Redirect("/");
         }
     }
 }

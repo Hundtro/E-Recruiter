@@ -1,6 +1,6 @@
 --create tables
 
-CREATE TABLE "Users" (
+CREATE TABLE User (
     "Id"        INTEGER PRIMARY KEY AUTOINCREMENT,    
     "Login"     TEXT NOT NULL,
     "Password"  TEXT NOT NULL,
@@ -9,21 +9,21 @@ CREATE TABLE "Users" (
     "CanConfig" INTEGER DEFAULT 0
 );
 
-CREATE TABLE "Reminders" (
+CREATE TABLE Reminder (
     "Id"        INTEGER PRIMARY KEY AUTOINCREMENT,
     "Text"      TEXT NOT NULL,
     "Created"   TEXT NOT NULL,
     "CreatedBy" INTEGER NOT NULL,
-    FOREIGN KEY(CreatedBy) REFERENCES Users(Id)
+    FOREIGN KEY(CreatedBy) REFERENCES User(Id)
 );
 
-CREATE TABLE "EmailTemplates" (
+CREATE TABLE EmailTemplate (
     "Id"      INTEGER PRIMARY KEY AUTOINCREMENT,
     "Title"   TEXT NOT NULL,
     "Message" TEXT NOT NULL
 );
 
-CREATE TABLE Candidates (
+CREATE TABLE Candidate (
     "Id"           INTEGER PRIMARY KEY AUTOINCREMENT,
     "Name"         TEXT NOT NULL,
     "Surname"      TEXT NOT NULL,
@@ -37,16 +37,16 @@ CREATE TABLE Candidates (
     "Photo"        BLOB,
     "CVFile"       BLOB,
     "CreatedBy"    INTEGER NOT NULL,
-    FOREIGN KEY(CreatedBy) REFERENCES Users(Id)
+    FOREIGN KEY(CreatedBy) REFERENCES User(Id)
 );
 
-CREATE TABLE JobTitles (
-    "Id"	    INTEGER PRIMARY KEY AUTOINCREMENT,
+CREATE TABLE JobTitle (
+    "Id"	        INTEGER PRIMARY KEY AUTOINCREMENT,
     "Title"         TEXT NOT NULL,
     "DefaultSalary" TEXT NOT NULL,
     "Description"   TEXT,
     "CreatedBy"     INTEGER NOT NULL,
-    FOREIGN KEY(CreatedBy) REFERENCES Users(Id)
+    FOREIGN KEY(CreatedBy) REFERENCES User(Id)
 );
 
 CREATE TABLE Experience (
@@ -56,16 +56,16 @@ CREATE TABLE Experience (
     "Title"         TEXT NOT NULL,
     "StartDate"     TEXT NOT NULL,
     "EndDate"       TEXT NOT NULL,
-    FOREIGN KEY(CandidateId) REFERENCES Candidates(Id)
+    FOREIGN KEY(CandidateId) REFERENCES Candidate(Id)
 );
 
-CREATE TABLE HireSteps (
+CREATE TABLE HireStep (
     "Id"            INTEGER PRIMARY KEY AUTOINCREMENT,
     "JobTitleId"    INTEGER NOT NULL,
-    "Order"         INTEGER,
+    "Order"         INTEGER NOT NULL,
     "Name"          TEXT NOT NULL,
     "Description"   TEXT,
-    FOREIGN KEY(JobTitleId) REFERENCES JobTitles(Id)
+    FOREIGN KEY(JobTitleId) REFERENCES JobTitle(Id)
 );
 
 CREATE TABLE HireProcess (
@@ -74,13 +74,13 @@ CREATE TABLE HireProcess (
     "JobTitleId"  INTEGER NOT NULL,
     "StepId"      INTEGER NOT NULL,
     "Comments"    TEXT,
-    FOREIGN KEY(CandidateId) REFERENCES Candidates(Id),
-    FOREIGN KEY(JobTitleId) REFERENCES JobTitles(Id),
-    FOREIGN KEY(StepId) REFERENCES HireSteps(Id)
+    FOREIGN KEY(CandidateId) REFERENCES Candidate(Id),
+    FOREIGN KEY(JobTitleId) REFERENCES JobTitle(Id),
+    FOREIGN KEY(StepId) REFERENCES HireStep(Id)
 );
 
 --Create default values
 
-INSERT INTO main.Users ("Login", "Password", "FullName", "CanEdit", "CanConfig") VALUES ("admin", "admin", "admin", 1, 1);  
-INSERT INTO main.JobTitles ("Title", "DefaultSalary", "CreatedBy") VALUES ('General', 0, (SELECT Id FROM main.Users WHERE Login ='admin'));
-INSERT INTO main.HireSteps ("JobTitleId", "Order", "Name") VALUES ((SELECT Id FROM main.JobTitles WHERE Title = 'General'), 1, 'Default');
+INSERT INTO main.User ("Login", "Password", "FullName", "CanEdit", "CanConfig") VALUES ("admin", "admin", "admin", 1, 1);  
+INSERT INTO main.JobTitle ("Title", "DefaultSalary", "CreatedBy") VALUES ('General', 0, (SELECT Id FROM main.User WHERE Login ='admin'));
+INSERT INTO main.HireStep ("JobTitleId", "Order", "Name") VALUES ((SELECT Id FROM main.JobTitle WHERE Title = 'General'), 1, 'Default');
