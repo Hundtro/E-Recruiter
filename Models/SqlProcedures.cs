@@ -12,57 +12,26 @@ namespace erecruiter
             return query;
         }       
 
-        public static string GetReminders(string userId)
+        public static string GetReminders()
         {
             string query = File.ReadAllText("Data/GetReminders.sql");
-            //query = SetNextParameter(query, userId);
+            query = query.Replace("?userId?", Session.UserId);
             return query;
         }
 
-        public static string SelectReminders()
+        public static string AddReminder(string text)
         {
-            string query = "SELECT * FROM main.Reminder";
-
-            return query;
-        }
-
-        public static string InsertReminder(string value)
-        {
-            string query = "INSERT INTO main.Reminder ";
-                   query += "(Value, Created) VALUES ('";
-                   query += value + "', ";
-                   query += "date('now'))";
-            
+            string query = File.ReadAllText("Data/AddReminder.sql");
+            query = query.Replace("?text?", text);
+            query = query.Replace("?userId?", Session.UserId);
             return query;
         }
 
         public static string DeleteReminder(string id)
         {
-            string query = "DELETE FROM main.Reminder ";
-                   query += "WHERE Id=" + id;
-
+            string query = File.ReadAllText("Data/DeleteReminder.sql");
+            query = query.Replace("?id?", id);
             return query;
         }
-
-		public static string SelectCandidates()
-		{
-			string query = "SELECT * FROM main.Candidate";
-
-			return query;
-		}
-
-		public static string InserCandidate(Candidate candidate)
-		{
-			string query = "INSERT INTO main.Candidate ";
-			//map parameters
-			return query;
-		}
-
-		public static string DeleleDelete(string Id)
-		{
-			string query = "";
-
-			return query;
-		}
     }
 }

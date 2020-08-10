@@ -19,7 +19,7 @@ namespace erecruiter
         {
             List<Reminder> reminders = new List<Reminder>();
 
-            dbAdapter.ExecuteSelectCommand(SqlProcedures.SelectReminders());
+            dbAdapter.ExecuteSelectCommand(SqlProcedures.GetReminders());
             while(dbAdapter.MoveToNextRow())
             {
                 Reminder reminder = new Reminder();
@@ -38,7 +38,7 @@ namespace erecruiter
         public IActionResult InsertReminder(string text)
         {   
             if(!string.IsNullOrEmpty(text))
-                dbAdapter.ExecuteCommand(SqlProcedures.InsertReminder(text));
+                dbAdapter.ExecuteCommand(SqlProcedures.AddReminder(text));
 
             return Redirect("/Home/Index");
         }
