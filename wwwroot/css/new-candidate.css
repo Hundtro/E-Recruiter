@@ -4,5 +4,39 @@
 
 .new-candidate {
     flex-grow: 1;
+}
+
+.new-candidate p {
+    font-size: 15px;
     text-align: center;
 }
+
+.params-table {
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+    padding: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.params-table input {
+	margin-left: 10%;
+    width: 80%;
+    font-size: 19px;
+}
+
+.params-table label {
+    text-align: center;
+    font-size: 18px;
+}
+
+.button-add {
+    padding: 1%;
+    font-size: 20px;
+    margin-left: 40%;
+    width: 20%;
+}
+
+
+

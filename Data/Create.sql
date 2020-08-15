@@ -41,7 +41,7 @@ CREATE TABLE Candidate (
 );
 
 CREATE TABLE JobTitle (
-    "Id"	        INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Id"            INTEGER PRIMARY KEY AUTOINCREMENT,
     "Title"         TEXT NOT NULL,
     "DefaultSalary" TEXT NOT NULL,
     "Description"   TEXT,

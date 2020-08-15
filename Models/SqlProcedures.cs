@@ -33,5 +33,10 @@ namespace erecruiter
             query = query.Replace("?id?", id);
             return query;
         }
+
+        public static string GetCandidates()
+        {
+            return "";
+        }
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace erecruiter
 {
@@ -19,7 +20,7 @@ namespace erecruiter
 		{
 			List<Candidate> candidates = new List<Candidate>();
 
-			dbAdapter.ExecuteSelectCommand(SqlProcedures.SelectCandidates());
+			dbAdapter.ExecuteSelectCommand(SqlProcedures.GetCandidates());
 			/*while(dbAdapter.MoveToNextRow())
 			{
 			    Worker worker = new Worker();
@@ -32,6 +33,19 @@ namespace erecruiter
 			dbAdapter.ClearData();
 
 			return candidates;
+        }
+
+        [HttpPost]
+        [Route("/InsertCandidate")]
+        public IActionResult InsertCandidate(Candidate candidate)
+        {
+            System.IO.MemoryStream stream = new System.IO.MemoryStream();
+            candidate.Photo.CopyTo(stream);
+            byte[] ar = stream.ToArray();
+            
+            Log.Add(System.Convert.ToBase64String(ar));
+
+            return Redirect("/Home/Index");
         }
     }
 }

@@ -1,11 +1,54 @@
-<link rel="stylesheet" href="~/css/new-candidate.css"/>
+@model erecruiter.Candidate;
 
+<link rel="stylesheet" href="~/css/new-candidate.css"/>
 <div class="content">
     @await Html.PartialAsync("_Menu")
     <div class="title">
         <p>New candidate</p>
         <hr>
     </div>
-	<div class="new-candidate">New canidate View</div>
+	<div class="new-candidate">
+        <p>* this parameters are obligatory</p>
+        <form action="/InsertCandidate" enctype="multipart/form-data" method="post">
+            <table class="params-table">
+                <tr>
+                    <td><label for="Name">Name*</label></td>
+                    <td><input type="text" name="Name"></td>
+                    <td><label for"WantedSalary">Wanted salary</label></td>
+                    <td><input type="text" name="WantedSalary"></td>
+                </tr>
+                <tr>
+                    <td><label for="Surname">Surname*</label></td>
+                    <td><input type="text" name="Surname"></td>
+                    <td><label for="HomeOffice">Home office</label></td>
+                    <td><input type="checkbox" name="HomeOffice"></td>
+                </tr>
+                <tr>
+                    <td><label for="BirthDate">BirthDate*</label></td>
+                    <td><input type="text" name="BirthData"></td>
+                    <td><label for="ExWorker">Exworker</label></td>
+                    <td><input type="checkbox" name="ExWorker"></td>
+                </tr>
+                <tr>
+                    <td><label for="Gender">Gender*</label></td>
+                    <td><input type="text" name="Gender"></td>
+                    <td><label for="Photo">Photo</label></td>
+                    <td><input type="file" name="Photo"></td>
+                </tr>
+                <tr>
+                    <td><label for="Email">Email</label></td>
+                    <td><input type="text" name="Email"></td>
+                    <td><label for="CVFile">CVFile</label></td>
+                    <td><input type="file" name="CVFile"></td>
+                </tr>
+                <tr>
+                    <td><label for="MobilePhone">Mobile phone</label></td>
+                    <td><input type="text" name="MobilePhone"></td>
+                </tr>
+            </table>
+            <br>
+            <input class="button button-add" type="submit" value="Add candidate">
+        </form>
+    </div>
     @await Html.PartialAsync("_Footer")
 </div>
