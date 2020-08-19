@@ -39,11 +39,23 @@ namespace erecruiter
         [Route("/InsertCandidate")]
         public IActionResult InsertCandidate(Candidate candidate)
         {
-            System.IO.MemoryStream stream = new System.IO.MemoryStream();
+            dbAdapter.ExecuteCommand(SqlProcedures.AddCandidate(candidate));
+
+            /*string test = candidate.Name;
+                   test += candidate.Surname;
+                   test += candidate.BirthDate;
+                   test += candidate.Gender;
+                   test += candidate.Email;
+                   test += candidate.MobilePhone;
+                   test += candidate.WantedSalary;
+                   test += candidate.HomeOffice;
+                   test += candidate.ExWorker;*/
+
+            /*System.IO.MemoryStream stream = new System.IO.MemoryStream();
             candidate.Photo.CopyTo(stream);
             byte[] ar = stream.ToArray();
             
-            Log.Add(System.Convert.ToBase64String(ar));
+            Log.Add(System.Convert.ToBase64String(ar));*/
 
             return Redirect("/Home/Index");
         }

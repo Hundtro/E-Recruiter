@@ -20,15 +20,25 @@
     margin-right: auto;
 }
 
-.params-table input {
+.params-table label {
+    text-align: center;
+    font-size: 18px;
+}
+
+.params-table select {
+    margin-left: 10%;
+    width: 80%;
+    font-size: 19px;
+}
+
+.input-param {
 	margin-left: 10%;
     width: 80%;
     font-size: 19px;
 }
 
-.params-table label {
-    text-align: center;
-    font-size: 18px;
+.check-box {
+   margin-left: 10%;
 }
 
 .button-add {
@@ -37,6 +47,4 @@
     margin-left: 40%;
     width: 20%;
 }
-
-
 

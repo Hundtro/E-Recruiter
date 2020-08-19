@@ -38,5 +38,42 @@ namespace erecruiter
         {
             return "";
         }
+
+        public static string AddCandidate(Candidate candidate)
+        {
+            string query = File.ReadAllText("Data/InsertCandidate.sql");
+            query = query.Replace("?name?", candidate.Name);
+            query = query.Replace("?surname?", candidate.Surname);
+            query = query.Replace("?birthdate?", candidate.BirthDate);
+            query = query.Replace("?gender?", candidate.Gender);
+           
+            if(candidate.Email != null)
+                query = query.Replace("?email?", candidate.Email);
+            else
+                query = query.Replace("?email?", "");
+
+            if(candidate.MobilePhone != null)
+                query = query.Replace("?mobilephone?", candidate.MobilePhone);
+            else
+                query = query.Replace("?mobilephone?", "");
+
+            if(candidate.WantedSalary != null)
+                query = query.Replace("?wantedsalary?", candidate.WantedSalary);
+            else
+                query = query.Replace("?wantedsalary?", "");
+            
+            if(candidate.HomeOffice != null && candidate.HomeOffice.Equals("on"))
+                query = query.Replace("?homeoffice?", "true");
+            else
+                query = query.Replace("?homeoffice?", "false");
+
+            if(candidate.ExWorker != null && candidate.ExWorker.Equals("on"))
+                query = query.Replace("?exworker?", "true");
+            else
+                query = query.Replace("?exworker?", "false");
+            
+            query = query.Replace("?userid?", Session.UserId);
+            return query;
+        }
     }
 }
