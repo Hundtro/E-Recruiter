@@ -1,0 +1,27 @@
+
+
+<link rel="stylesheet" href="~/css/find-candidate.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>Find candidate</p>
+        <hr>
+    </div>
+    <div class="find-panel">
+        <form class="find-form" action="/FindCandidate" method="post">
+            <table>
+                <tr>
+                    <td><label for="name">Name</label></td>
+                    <td><input type="text" name="name"></td>
+                    <td><label for="surname">Surname</label></td>
+                    <td><input type="text" name="surname"></td>
+                    <td><input type="submit" class="button button-find" value="Find"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="find-candidate">
+        Test
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

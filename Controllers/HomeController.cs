@@ -81,6 +81,15 @@ namespace erecruiter
                 return Redirect("/");
         }
 
+        [Route("/Home/FindCandidate")]
+        public IActionResult FindCandidate()
+        {
+            if(Session.isLogged)
+               return View();
+            else
+               return Redirect("/");
+        }
+
         //another actions
         
         [Route("/Logout")]

@@ -21,15 +21,10 @@ namespace erecruiter
 			List<Candidate> candidates = new List<Candidate>();
 
 			dbAdapter.ExecuteSelectCommand(SqlProcedures.GetCandidates());
-			/*while(dbAdapter.MoveToNextRow())
+			while(dbAdapter.MoveToNextRow())
 			{
-			    Worker worker = new Worker();
-                worker.Id = dbAdapter.GetColumnValue("Id");
-                worker.Name = dbAdapter.GetColumnValue("Name");
-                worker.Surname = dbAdapter.GetColumnValue("Surname");
-				//add other parametes
-                workers.Add(worker);
-			}*/
+
+			}
 			dbAdapter.ClearData();
 
 			return candidates;
@@ -41,23 +36,14 @@ namespace erecruiter
         {
             dbAdapter.ExecuteCommand(SqlProcedures.AddCandidate(candidate));
 
-            /*string test = candidate.Name;
-                   test += candidate.Surname;
-                   test += candidate.BirthDate;
-                   test += candidate.Gender;
-                   test += candidate.Email;
-                   test += candidate.MobilePhone;
-                   test += candidate.WantedSalary;
-                   test += candidate.HomeOffice;
-                   test += candidate.ExWorker;*/
-
-            /*System.IO.MemoryStream stream = new System.IO.MemoryStream();
-            candidate.Photo.CopyTo(stream);
-            byte[] ar = stream.ToArray();
-            
-            Log.Add(System.Convert.ToBase64String(ar));*/
-
             return Redirect("/Home/Index");
+        }
+
+        [HttpPost]
+        [Route("/FindCandidate")]
+        public IActionResult FindCandiddate(string name, string surname)
+        {
+            return Redirect("/Home/FindReminder");
         }
     }
 }

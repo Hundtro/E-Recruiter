@@ -1,0 +1,23 @@
+@import "body.css";
+@import "menu.css";
+@import "footer.css";
+
+.find-candidate {
+    flex-grow: 1;
+}
+
+.find-panel {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button-find {
+    font-size: 20px;
+    padding: 10%;
+}
+
+td {
+    font-size: 20px;
+}
+
+
