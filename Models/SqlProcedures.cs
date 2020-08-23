@@ -41,7 +41,7 @@ namespace erecruiter
 
         public static string AddCandidate(Candidate candidate)
         {
-            string query = File.ReadAllText("Data/InsertCandidate.sql");
+            string query = File.ReadAllText("Data/AddCandidate.sql");
             query = query.Replace("?name?", candidate.Name);
             query = query.Replace("?surname?", candidate.Surname);
             query = query.Replace("?birthdate?", candidate.BirthDate);
@@ -71,7 +71,31 @@ namespace erecruiter
                 query = query.Replace("?exworker?", "true");
             else
                 query = query.Replace("?exworker?", "false");
-            
+           
+            if(candidate.Photo != null)
+            {
+                MemoryStream stream = new MemoryStream();
+                candidate.Photo.CopyTo(stream);
+                byte[] ar = stream.ToArray();
+                query = query.Replace("?photo?", System.Convert.ToBase64String(ar));
+            }
+            else
+            {
+                query = query.Replace("?photo?", "");
+            }
+
+            if(candidate.CVFile != null)
+            {
+                MemoryStream stream = new MemoryStream();
+                candidate.CVFile.CopyTo(stream);
+                byte[] ar = stream.ToArray();
+                query = query.Replace("?cvfile?", System.Convert.ToBase64String(ar));
+            }
+            else
+            {
+                query = query.Replace("?cvfile?", "");
+            }
+
             query = query.Replace("?userid?", Session.UserId);
             return query;
         }
