@@ -16,6 +16,8 @@ namespace erecruiter
         public string ExWorker { get; set; }
         public IFormFile Photo { get; set; }
         public IFormFile CVFile { get; set; }
+        public string PhotoData { get; set; }
+        public string CVFileData { get; set; }
         public string CreatedBy { get; set; }		
     }
 }

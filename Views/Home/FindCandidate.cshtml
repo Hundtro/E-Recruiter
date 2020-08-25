@@ -1,4 +1,6 @@
-
+@{
+	var candidates = ViewData["Candidates"] as List<erecruiter.Candidate>;
+}
 
 <link rel="stylesheet" href="~/css/find-candidate.css"/>
 <div class="content">
@@ -21,7 +23,35 @@
         </form>
     </div>
     <div class="find-candidate">
-        Test
+    @if (candidates.Count!=0)
+    {
+        <table class="candidate-table">
+        @for(int i = 0; i < candidates.Count; i++)
+        {
+            <tr>
+            @if(String.IsNullOrEmpty(candidates[i].PhotoData))
+            {
+                <td><img src="~/images/unknown.jpg" width="60%" height="100%"></td>
+            }
+            else
+            {
+                <td><img src="data:image/jpeg;base64, @candidates[i].PhotoData" width="60%" height="100%"></td>
+            }
+                <td>@candidates[i].Name @candidates[i].Surname</td>
+                <td>
+                    <form action="/ViewCandidate" method="post">
+                        <input type="hidden" name="id" value="@candidates[i].Id"/>
+                        <input class="button button-view" type="submit" value="View"/>
+                    </form>
+                </td>
+            </tr>
+        }
+        </table>
+    }
+    else
+    {
+        <p>No candidates found</p> 
+    }
     </div>
     @await Html.PartialAsync("_Footer")
 </div>

@@ -34,9 +34,12 @@ namespace erecruiter
             return query;
         }
 
-        public static string GetCandidates()
+        public static string GetCandidates(string name, string surname)
         {
-            return "";
+            string query = File.ReadAllText("Data/GetCandidates.sql");
+            query = query.Replace("?name?", name);
+            query = query.Replace("?surname?", surname);
+            return query;
         }
 
         public static string AddCandidate(Candidate candidate)

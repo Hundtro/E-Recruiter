@@ -45,7 +45,7 @@ namespace erecruiter
             if(Session.isLogged)
             {
                 ViewData["UserName"] = Session.FullName;
-                ViewData["Reminders"] = new ReminderController(this.configuration).GetReminders(); //by userId
+                ViewData["Reminders"] = new ReminderController(this.configuration).GetReminders();
                 return View();
             }
             else
@@ -85,9 +85,14 @@ namespace erecruiter
         public IActionResult FindCandidate()
         {
             if(Session.isLogged)
+            {
+               ViewData["Candidates"] = new CandidateController(this.configuration).GetCandidates("", "");
                return View();
+            }
             else
+            {
                return Redirect("/");
+            }
         }
 
         //another actions
