@@ -41,3 +41,11 @@
     margin-left: 2%;
     margin-right: 2%;
 }
+
+.button-change {
+    font-size: 20px;
+    width: 70%;
+    margin-left: 15%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}

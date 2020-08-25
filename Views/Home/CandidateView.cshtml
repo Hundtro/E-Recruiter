@@ -93,7 +93,20 @@
         <table class="edit-table">
             <tr>
                 <td bgcolor="red" width="70%"></td>
-                <td bgcolor="green" width="30%"></td>
+                <td width="30%">
+                    <form action="/AddExperience" method="post">
+                        <input type="hidden" name="id" value="@candidate.Id"/>
+                        <input class="button button-change" type="submit" value="Add experience"/>
+                    </form>
+                    <form action="/EditCandidate" method="post">
+                        <input type="hidden" name="candidate" value="@candidate"/>
+                        <input class="button button-change" type="submit" value="Edit candidate"/>
+                    </form>
+                    <form action="/DeleteCandidate" method="post">
+                        <input type="hidden" name="id" value="@candidate.Id"/>
+                        <input class="button button-change" type="submit" value="Delete"/>
+                    </form>
+                </td>
             </tr>
         </table>
     </div>
