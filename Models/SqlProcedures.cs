@@ -102,5 +102,12 @@ namespace erecruiter
             query = query.Replace("?userid?", Session.UserId);
             return query;
         }
+
+        public static string GetCandidate(string id)
+        {
+            string query = File.ReadAllText("Data/GetCandidate.sql");
+            query = query.Replace("?id?", id);
+            return query;
+        }
     }
 }

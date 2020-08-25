@@ -1,0 +1,101 @@
+@{
+    var candidate = ViewData["Candidate"] as erecruiter.Candidate; 
+}
+
+<link rel="stylesheet" href="~/css/candidate.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="candidate">
+        <table class="data-table">
+            <tr>
+                @if (String.IsNullOrEmpty(candidate.PhotoData))
+                {
+                <td width="30%">
+                    <img src="~/images/unknown.jpg" width="90%" height="100%">
+                </td>
+                }
+                else
+                {
+                <td width="30%">
+                    <img src="data:image/jpeg;base64, @candidate.PhotoData" width="90%" height="100%">
+                </td>               
+                }
+                <td width="70%">
+                    <table class="inner-data-table">
+                        <tr>
+                            <td>Name: @candidate.Name</td>
+                            @if (String.IsNullOrEmpty(candidate.Email))
+                            {
+                            <td>Email: not available</td>
+                            }
+                            else
+                            {
+                            <td>Email: @candidate.Email</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Surname: @candidate.Surname</td>
+                            @if (String.IsNullOrEmpty(candidate.MobilePhone))
+                            {
+                            <td>Phone: not available</td>
+                            }
+                            else
+                            {
+                            <td>Phone: @candidate.MobilePhone</td>
+                            }                           
+                        </tr>
+                        <tr>
+                            <td>Bithdate: @candidate.BirthDate</td>
+                            @if (candidate.HomeOffice.Equals("true"))
+                            {
+                            <td>Home Office: yes</td>
+                            }
+                            else
+                            {
+                            <td>Home Office: no</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Gender: @candidate.Gender</td>
+                            @if (candidate.ExWorker.Equals("true"))
+                            {
+                            <td>Exworker: yes</td>
+                            }
+                            else
+                            {
+                            <td>Exworker: no</td>
+                            }
+                        </tr>
+                        <tr>
+                            @if (String.IsNullOrEmpty(candidate.CVFileData))
+                            {
+                            <td>CVFile: not available</td>
+                            }
+                            else
+                            {
+                            <td>CVFile: 
+                                <a href="data:application/pdf;base64, @candidate.CVFileData" download="cv.pdf">Download</a>
+                            </td>
+                            }
+                            @if (String.IsNullOrEmpty(candidate.WantedSalary))
+                            {
+                            <td>Wanted salary: not set</td>
+                            }
+                            else
+                            {
+                            <td>Wanted salary: @candidate.WantedSalary</td>
+                            }
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="edit-table">
+            <tr>
+                <td bgcolor="red" width="70%"></td>
+                <td bgcolor="green" width="30%"></td>
+            </tr>
+        </table>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

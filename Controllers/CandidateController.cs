@@ -28,16 +28,7 @@ namespace erecruiter
                 candidate.Id = dbAdapter.GetColumnValue("Id");
                 candidate.Name = dbAdapter.GetColumnValue("Name");
                 candidate.Surname = dbAdapter.GetColumnValue("Surname");
-                candidate.BirthDate = dbAdapter.GetColumnValue("BirthDate");
-                candidate.Gender = dbAdapter.GetColumnValue("Gender");
-                candidate.WantedSalary = dbAdapter.GetColumnValue("WantedSalary");
-                candidate.Email = dbAdapter.GetColumnValue("Email");
-                candidate.MobilePhone = dbAdapter.GetColumnValue("MobilePhone");
-                candidate.HomeOffice = dbAdapter.GetColumnValue("HomeOffice");
-                candidate.ExWorker = dbAdapter.GetColumnValue("ExWorker");
                 candidate.PhotoData = dbAdapter.GetColumnValue("Photo");
-                candidate.CVFileData = dbAdapter.GetColumnValue("CVFile");
-                candidate.CreatedBy = dbAdapter.GetColumnValue("CreatedBy");
 
                 candidates.Add(candidate);
 			}
@@ -52,14 +43,43 @@ namespace erecruiter
         {
             dbAdapter.ExecuteCommand(SqlProcedures.AddCandidate(candidate));
 
-            return Redirect("/Home/Index");
+            return Redirect("/Home/FindCandidate");
         }
 
         [HttpPost]
         [Route("/FindCandidate")]
         public IActionResult FindCandiddate(string name, string surname)
         {
-            return Redirect("/Home/FindCandidate");
+            ViewData["Candidates"] = new CandidateController(this.configuration).GetCandidates(name, surname);
+            return View("~/Views/Home/FindCandidate.cshtml");
+        }
+
+        [HttpPost]
+        [Route("/ViewCandidate")]
+        public IActionResult ViewCandidate(string id)
+        {
+            Candidate candidate = new Candidate();
+            
+            dbAdapter.ExecuteSelectCommand(SqlProcedures.GetCandidate(id));
+			while(dbAdapter.MoveToNextRow())
+			{
+                candidate.Id = id;
+                candidate.Name = dbAdapter.GetColumnValue("Name");
+                candidate.Surname = dbAdapter.GetColumnValue("Surname");
+                candidate.BirthDate = dbAdapter.GetColumnValue("BirthDate");
+                candidate.Gender = dbAdapter.GetColumnValue("Gender");
+                candidate.WantedSalary = dbAdapter.GetColumnValue("WantedSalary");
+                candidate.Email = dbAdapter.GetColumnValue("Email");
+                candidate.MobilePhone = dbAdapter.GetColumnValue("MobilePhone");
+                candidate.HomeOffice = dbAdapter.GetColumnValue("HomeOffice");
+                candidate.ExWorker = dbAdapter.GetColumnValue("ExWorker");
+                candidate.PhotoData = dbAdapter.GetColumnValue("Photo");
+                candidate.CVFileData = dbAdapter.GetColumnValue("CVFile");
+            }
+            dbAdapter.ClearData();
+
+            ViewData["Candidate"] = candidate;
+            return View("~/Views/Home/CandidateView.cshtml");
         }
     }
 }
