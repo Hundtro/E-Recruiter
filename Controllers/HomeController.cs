@@ -94,6 +94,20 @@ namespace erecruiter
                return Redirect("/");
             }
         }
+        
+        [Route("/Home/AddExperience")]
+        public IActionResult AddExperience(string candidateId)
+        {
+            if(Session.isLogged)
+            { 
+                ViewData["CandidateId"] = candidateId;
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
+        }
 
         //another actions
         

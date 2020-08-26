@@ -1,0 +1,39 @@
+@model erecruiter.Experience;
+@{
+    var candidateId = ViewData["CandidateId"]; 
+}
+
+
+<link rel="stylesheet" href="~/css/add-experience.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>Add experience</p>
+        <hr>
+    </div>
+    <div class="experience-add">
+        <form action="/InsertExperience" method="post">
+            <input type="hidden" name="CandidateId" value="@candidateId"/>
+            <table>
+                <tr>
+                    <td><label for="Name">Name</label></td>
+                    <td><input type="text" name="Name"></td>
+                </tr>
+                <tr>
+                    <td><label for="Title">Title</label></td>
+                    <td><input type="text" name="Title"></td>
+                </tr>
+                <tr>
+                    <td><label for="StartDate">Start date</label></td>
+                    <td><input type="text" name="StartDate"></td>
+                </tr>
+                <tr>
+                    <td><label for="EndDate">End date</label></td>
+                    <td><input type="text" name="EndDate"></td>
+                </tr>
+            </table>
+            <input class="button" type="submit" value="Add">
+        </form>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

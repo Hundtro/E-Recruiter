@@ -120,8 +120,8 @@
                     </fieldset>
                 </td>
                 <td width="30%">
-                    <form action="/AddExperience" method="post">
-                        <input type="hidden" name="id" value="@candidate.Id"/>
+                    <form action="/Home/AddExperience" method="post">
+                        <input type="hidden" name="candidateId" value="@candidate.Id"/>
                         <input class="button button-change" type="submit" value="Add experience"/>
                     </form>
                     <form action="/EditCandidate" method="post">

@@ -118,5 +118,16 @@ namespace erecruiter
             query = query.Replace("?id?", candidateId);
             return query;
         }
+
+        public static string AddExperience(Experience experience)
+        {
+            string query = File.ReadAllText("Data/AddExperience.sql");
+            query = query.Replace("?candidateId?", experience.CandidateId);
+            query = query.Replace("?name?", experience.Name);
+            query = query.Replace("?title?", experience.Title);
+            query = query.Replace("?startdate?", experience.StartDate);
+            query = query.Replace("?enddate?", experience.EndDate);
+            return query;
+        }
     }
 }
