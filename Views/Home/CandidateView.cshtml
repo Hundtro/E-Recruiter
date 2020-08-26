@@ -1,5 +1,6 @@
 @{
-    var candidate = ViewData["Candidate"] as erecruiter.Candidate; 
+    var candidate = ViewData["Candidate"] as erecruiter.Candidate;
+    var experiences = ViewData["Experiences"] as List<erecruiter.Experience>;
 }
 
 <link rel="stylesheet" href="~/css/candidate.css"/>
@@ -92,7 +93,32 @@
         </table>
         <table class="edit-table">
             <tr>
-                <td bgcolor="red" width="70%"></td>
+                <td width="70%">
+                    <fieldset>
+                        <legend>Experience</legend>
+                        @if (experiences.Count!=0)
+                        {
+                        <table class="exp-table">
+                            <tr>
+                                <th>Name</th>
+                                <th>Title</th>
+                                <th>Start date</th>
+                                <th>End date</th>
+                            </tr>
+                            <tr>
+                                <td>1111</td>
+                                <td>2222</td>
+                                <td>3333</td>
+                                <td>4444</td>
+                            </tr>
+                        </table>
+                        }
+                        else
+                        {
+                        <p>No records found</p>
+                        }
+                    </fieldset>
+                </td>
                 <td width="30%">
                     <form action="/AddExperience" method="post">
                         <input type="hidden" name="id" value="@candidate.Id"/>

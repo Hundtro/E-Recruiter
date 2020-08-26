@@ -78,6 +78,23 @@ namespace erecruiter
             }
             dbAdapter.ClearData();
 
+            List<Experience> experiences = new List<Experience>();
+
+            dbAdapter.ExecuteSelectCommand(SqlProcedures.GetExperiences(id));
+            while(dbAdapter.MoveToNextRow())
+            {
+                Experience experience = new Experience();
+
+                experience.Name = dbAdapter.GetColumnValue("Name");
+                experience.Title = dbAdapter.GetColumnValue("Title");
+                experience.StartDate = dbAdapter.GetColumnValue("StartDate");
+                experience.EndDate = dbAdapter.GetColumnValue("EndDate");
+
+                experiences.Add(experience);
+            }
+            dbAdapter.ClearData();
+
+            ViewData["Experiences"] = experiences; 
             ViewData["Candidate"] = candidate;
             return View("~/Views/Home/CandidateView.cshtml");
         }

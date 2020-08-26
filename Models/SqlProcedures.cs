@@ -109,5 +109,14 @@ namespace erecruiter
             query = query.Replace("?id?", id);
             return query;
         }
+        
+        //delete + update candidate
+        
+        public static string GetExperiences(string candidateId)
+        {
+            string query = File.ReadAllText("Data/GetExperiences.sql");
+            query = query.Replace("?id?", candidateId);
+            return query;
+        }
     }
 }

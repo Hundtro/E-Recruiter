@@ -42,6 +42,33 @@
     margin-right: 2%;
 }
 
+.edit-table fieldset {
+    height: 80%;
+}
+
+.edit-table p {
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 6%;
+}
+
+.exp-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.exp-table td {
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.exp-table th {
+    border-style: solid;
+    border-width: 1px;
+}
+
 .button-change {
     font-size: 20px;
     width: 70%;
