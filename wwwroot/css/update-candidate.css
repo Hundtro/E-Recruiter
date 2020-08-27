@@ -1,0 +1,44 @@
+@import "body.css";
+@import "menu.css";
+@import "footer.css";
+
+.update-candidate {
+    flex-grow: 1;
+}
+
+.params-table {
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+    padding: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.params-table label {
+    text-align: center;
+    font-size: 18px;
+}
+
+.params-table select {
+    margin-left: 10%;
+    width: 80%;
+    font-size: 19px;
+}
+
+.input-param {
+	margin-left: 10%;
+    width: 80%;
+    font-size: 19px;
+}
+
+.check-box {
+   margin-left: 10%;
+}
+
+.button-update {
+    padding: 1%;
+    font-size: 20px;
+    margin-left: 40%;
+    width: 20%;
+}

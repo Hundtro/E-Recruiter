@@ -109,8 +109,92 @@ namespace erecruiter
             query = query.Replace("?id?", id);
             return query;
         }
+       
+
+        public static string UpdateCandidate(Candidate candidate)
+        {
+            string query = File.ReadAllText("Data/UpdateCandidate.sql");
+            
+            if(candidate.Name != null)
+            {
+                query = query.Replace("Name = '?name?',", "");
+            }
+            else
+            {
+                query = query.Replace("?name?", candidate.Name);
+            }
+
+            if(candidate.Surname != null)
+            {
+                query = query.Replace("Surname = '?surname?',", "");
+            }
+            else
+            {
+                query = query.Replace("?surname?", candidate.Surname);
+            }
+
+            if(candidate.BirthDate != null)
+            {
+                query = query.Replace("BirthDate = '?birthdate?',", "");
+            }
+            else
+            {
+                query = query.Replace("?birthdate?", candidate.BirthDate);
+            }
+
+            query = query.Replace("?gender?", candidate.Gender);
+            query = query.Replace("?wantedsalary?", candidate.WantedSalary);
+            query = query.Replace("?email?", candidate.Email);
+            query = query.Replace("?mobilephone?", candidate.MobilePhone);
+            
+            if(candidate.HomeOffice != null && candidate.HomeOffice.Equals("on"))
+                query = query.Replace("?homeoffice?", "true");
+            else
+                query = query.Replace("?homeoffice?", "false");
+
+            if(candidate.ExWorker != null && candidate.ExWorker.Equals("on"))
+                query = query.Replace("?exworker?", "true");
+            else
+                query = query.Replace("?exworker?", "false");
+
+            if(candidate.Photo != null)
+            {
+                MemoryStream stream = new MemoryStream();
+                candidate.Photo.CopyTo(stream);
+                byte[] ar = stream.ToArray();
+                query = query.Replace("?photo?", System.Convert.ToBase64String(ar));
+            }
+            else
+            {
+                query = query.Replace("Photo = '?photo?',", "");
+            }
+
+            if(candidate.CVFile != null)
+            {
+                MemoryStream stream = new MemoryStream();
+                candidate.CVFile.CopyTo(stream);
+                byte[] ar = stream.ToArray();
+                query = query.Replace("?cvfile?", System.Convert.ToBase64String(ar));
+            }
+            else
+            {
+                query = query.Replace("CVFile = '?cvfile?'", "");
+                int lastCommaIndex = query.LastIndexOf(',');
+                query = query.Remove(lastCommaIndex, 1);
+            }
+
+            query = query.Replace("?id?", candidate.Id);
+            
+            return query;
+        } 
         
-        //delete + update candidate
+        public static string DeleteCandidate(string candidateId)
+        {
+            string query = File.ReadAllText("Data/DeleteCandidate.sql");
+            query = query.Replace("?id?", candidateId);
+            Log.Add(query);
+            return query;
+        }
         
         public static string GetExperiences(string candidateId)
         {

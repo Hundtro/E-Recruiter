@@ -46,6 +46,10 @@
     height: 80%;
 }
 
+.legend-title {
+    font-size: 20px;
+}
+
 .edit-table p {
     font-size: 20px;
     text-align: center;

@@ -37,6 +37,31 @@ namespace erecruiter
 			return candidates;
         }
 
+        public Candidate GetCandidate(string id)
+        {
+            Candidate candidate = new Candidate();
+
+            dbAdapter.ExecuteSelectCommand(SqlProcedures.GetCandidate(id));
+            while(dbAdapter.MoveToNextRow())
+            {
+                candidate.Id = id;
+                candidate.Name = dbAdapter.GetColumnValue("Name");
+                candidate.Surname = dbAdapter.GetColumnValue("Surname");
+                candidate.BirthDate = dbAdapter.GetColumnValue("BirthDate");
+                candidate.Gender = dbAdapter.GetColumnValue("Gender");
+                candidate.WantedSalary = dbAdapter.GetColumnValue("WantedSalary");
+                candidate.Email = dbAdapter.GetColumnValue("Email");
+                candidate.MobilePhone = dbAdapter.GetColumnValue("MobilePhone");
+                candidate.HomeOffice = dbAdapter.GetColumnValue("HomeOffice");
+                candidate.ExWorker = dbAdapter.GetColumnValue("ExWorker");
+                candidate.PhotoData = dbAdapter.GetColumnValue("Photo");
+                candidate.CVFileData = dbAdapter.GetColumnValue("CVFile");
+            }
+            dbAdapter.ClearData();
+
+            return candidate;
+        }
+
         [HttpPost]
         [Route("/InsertCandidate")]
         public IActionResult InsertCandidate(Candidate candidate)
@@ -58,31 +83,30 @@ namespace erecruiter
         [Route("/ViewCandidate")]
         public IActionResult ViewCandidate(string id)
         {
-            Candidate candidate = new Candidate();
-            
-            dbAdapter.ExecuteSelectCommand(SqlProcedures.GetCandidate(id));
-			while(dbAdapter.MoveToNextRow())
-			{
-                candidate.Id = id;
-                candidate.Name = dbAdapter.GetColumnValue("Name");
-                candidate.Surname = dbAdapter.GetColumnValue("Surname");
-                candidate.BirthDate = dbAdapter.GetColumnValue("BirthDate");
-                candidate.Gender = dbAdapter.GetColumnValue("Gender");
-                candidate.WantedSalary = dbAdapter.GetColumnValue("WantedSalary");
-                candidate.Email = dbAdapter.GetColumnValue("Email");
-                candidate.MobilePhone = dbAdapter.GetColumnValue("MobilePhone");
-                candidate.HomeOffice = dbAdapter.GetColumnValue("HomeOffice");
-                candidate.ExWorker = dbAdapter.GetColumnValue("ExWorker");
-                candidate.PhotoData = dbAdapter.GetColumnValue("Photo");
-                candidate.CVFileData = dbAdapter.GetColumnValue("CVFile");
-            }
-            dbAdapter.ClearData();
-
+            Candidate candidate = GetCandidate(id); 
             List<Experience> experiences = new ExperienceController(this.configuration).GetExperiences(id);
 
             ViewData["Experiences"] = experiences; 
             ViewData["Candidate"] = candidate;
             return View("~/Views/Home/CandidateView.cshtml");
+        }
+
+        [HttpPost]
+        [Route("/UpdateCandidate")]
+        public IActionResult UpdateCandidate(Candidate candidate)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.UpdateCandidate(candidate));
+
+            return Redirect("/Home/FindCandidate");
+        }
+
+        [HttpPost]
+        [Route("/DeleteCandidate")]
+        public IActionResult DeleteCandidate(string id)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.DeleteCandidate(id));
+
+            return Redirect("/Home/FindCandidate");
         }
     }
 }

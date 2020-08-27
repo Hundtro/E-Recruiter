@@ -81,6 +81,20 @@ namespace erecruiter
                 return Redirect("/");
         }
 
+        [Route("/Home/UpdateCandidate")]
+        public IActionResult UpdateCandidate(string id)
+       	{
+            if(Session.isLogged)
+            { 
+                ViewData["Candidate"] = new CandidateController(this.configuration).GetCandidate(id);
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
+        }
+
         [Route("/Home/FindCandidate")]
         public IActionResult FindCandidate()
         {

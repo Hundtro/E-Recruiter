@@ -95,7 +95,7 @@
             <tr>
                 <td width="70%">
                     <fieldset>
-                        <legend>Experience</legend>
+                        <legend class="legend-title">Experience</legend>
                         @if (experiences.Count!=0)
                         {
                             <table class="exp-table">
@@ -127,8 +127,8 @@
                         <input type="hidden" name="candidateId" value="@candidate.Id"/>
                         <input class="button button-change" type="submit" value="Add experience"/>
                     </form>
-                    <form action="/EditCandidate" method="post">
-                        <input type="hidden" name="candidate" value="@candidate"/>
+                    <form action="/Home/UpdateCandidate" method="post">
+                        <input type="hidden" name="id" value="@candidate.Id"/>
                         <input class="button button-change" type="submit" value="Edit candidate"/>
                     </form>
                     <form action="/DeleteCandidate" method="post">
