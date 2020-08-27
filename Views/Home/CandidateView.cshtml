@@ -98,24 +98,27 @@
                         <legend>Experience</legend>
                         @if (experiences.Count!=0)
                         {
-                        <table class="exp-table">
-                            <tr>
-                                <th>Name</th>
-                                <th>Title</th>
-                                <th>Start date</th>
-                                <th>End date</th>
-                            </tr>
-                            <tr>
-                                <td>1111</td>
-                                <td>2222</td>
-                                <td>3333</td>
-                                <td>4444</td>
-                            </tr>
-                        </table>
+                            <table class="exp-table">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Start date</th>
+                                    <th>End date</th>
+                                </tr>
+                            @for(int i = 0; i < experiences.Count; i++)
+                            {
+                                <tr>
+                                    <td>@experiences[i].Name</td>
+                                    <td>@experiences[i].Title</td>
+                                    <td>@experiences[i].StartDate</td>
+                                    <td>@experiences[i].EndDate</td>
+                                </tr>
+                            }
+                            </table>
                         }
                         else
                         {
-                        <p>No records found</p>
+                            <p>No records found</p>
                         }
                     </fieldset>
                 </td>

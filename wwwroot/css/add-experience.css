@@ -4,4 +4,26 @@
 
 .experience-add {
     flex-grow: 1;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 20%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    padding-top: 1%;
+    padding-left: 1%;
+}
+
+.input-table {
+    width: 100%;
+    font-size: 20px;
+}
+
+.button-add {
+    height: 20%;
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 2%;
+    font-size: 20px;
 }
