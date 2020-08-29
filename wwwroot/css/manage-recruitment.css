@@ -1,0 +1,77 @@
+@import "body.css";
+@import "menu.css";
+@import "footer.css";
+
+.manage-recruitment {
+    flex-grow: 1;
+}
+
+.recruitment-table {
+    height: 100%;
+    width: 100%;
+}
+
+.hire-table {
+    height: 100%;
+    width: 100%;
+}
+
+.title-table {
+    height: 100%;
+    width: 100%;
+}
+
+.title-tr {
+    height: 10%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.main-tr {
+    height: 70%;
+}
+
+.button-tr {
+    height: 20%;
+    text-align: center;
+}
+
+.test {
+    height: 100%;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.button-find {
+    font-size: 20px;
+    height: 60%;
+    width: 40%;
+}
+
+.button-add {
+    font-size: 20px;
+    height: 60%;
+    width: 40%;
+}
+
+.inner-table {
+    width: 90%;
+    margin: 5%;
+    border-collapse: collapse;
+}
+
+.inner-table td {
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    text-align: center;
+}
+
+.button-view {
+    height: 80%;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+}

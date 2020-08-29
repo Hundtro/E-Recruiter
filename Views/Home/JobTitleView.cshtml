@@ -1,0 +1,43 @@
+@{
+   var jobTitle = ViewData["JobTitle"] as erecruiter.JobTitle;
+   var hireSteps = ViewData["HireSteps"] as List<erecruiter.HireStep>;
+}
+
+<link rel="stylesheet" href="~/css/jobtitle.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="jobtitle">
+        <table class="main-table">
+            <tr>
+                <td width="50%">
+                    <div class="job-attribute">Title: Junior Senior Pomidor</div>
+                    <div class="job-attribute">Default salary: 3000$</div>
+                    <div class="job-attribute">CreatedBy: banan</div>
+                    <div class="job-attribute">
+                        <table class="inner-table">
+                            <tr>
+                                <td width="50%">
+                                    <form action="/Home/UpdateJobTitle" method="post">
+                                        <input type="hidden" name="jobTitleId" value="@jobTitle.Id"/>
+                                        <input class="button button-change" type="submit" value="Edit"/>
+                                    </form>       
+                                </td>
+                                <td width="50%">
+                                    <form action="/DeleteJobTitle" method="post">
+                                        <input type="hidden" name="jobTitleId" value="@jobTitle.Id"/>
+                                        <input class="button button-change" type="submit" value="Delete"/>
+                                    </form>       
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td width="50%">
+                    <div class="desc-title">Description</div>
+                    <div class="desc-text"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

@@ -213,5 +213,25 @@ namespace erecruiter
             query = query.Replace("?enddate?", experience.EndDate);
             return query;
         }
+
+        public static string GetJobTitles()
+        {
+            string query = File.ReadAllText("Data/GetJobTitles.sql");
+            return query;
+        }
+
+        public static string GetJobTitle(string id)
+        {
+            string query = File.ReadAllText("Data/GetJobTitle.sql");
+            query = query.Replace("?id?", id);
+            return query;
+        }
+
+        public static string AddJobTitle(JobTitle jobTitle)
+        {
+            string query = File.ReadAllText("Data/AddJobTitle.sql");
+            //
+            return query;
+        }
     }
 }

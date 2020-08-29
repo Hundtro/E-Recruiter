@@ -1,0 +1,74 @@
+@{
+    var jobTitles = ViewData["JobTitles"] as List<erecruiter.JobTitle>;
+}
+
+
+<link rel="stylesheet" href="~/css/manage-recruitment.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>Manage recruitment</p>
+        <hr>
+    </div>
+	<div class="manage-recruitment">
+        <table class="recruitment-table">
+           <tr>
+               <td width="60%">
+                   <table class="hire-table">
+                      <tr class="title-tr">
+                          <td>Hire processes</td>
+                      </tr>
+                      <tr class="main-tr">
+                          <td><div class="test">Hire</div></td>
+                      </tr>
+                      <tr class="button-tr">
+                          <td>
+                              <input class="button button-find" type="button" value="Find" onclick="location.href='/Home/FindProcess'"/>
+                          </td>
+                      </tr>
+                   </table>
+               </td>
+               <td width="40%">
+                   <table class="title-table">
+                      <tr class="title-tr">
+                          <td>Job titles</td>
+                      </tr>
+                      <tr class="main-tr">
+                          <td>
+                          <div class="test">
+                              @if (jobTitles.Count != 0)
+                              {
+                              <table class="inner-table">
+                                  @for (int i = 0; i < jobTitles.Count; i++)
+                                  {
+                                  <tr>
+                                      <td width="60%">@jobTitles[i].Title</td>
+                                      <td width="40%">
+                                          <form action="/ViewJobTitle" method="post">
+                                              <input type="hidden" name="jobTitleId" value="@jobTitles[i].Id"/>
+                                              <input class="button button-view" type="submit" value="View"/>
+                                          </form>
+                                      </td>
+                                  </tr>
+                                  }
+                              </table>
+                              }
+                              else
+                              {
+                              <p>No job titles found</p>
+                              }
+                          </div>
+                          </td>
+                      </tr>
+                      <tr class="button-tr">
+                          <td>
+                              <input class="button button-add" type="button" value="Add" onclick="location.href='/Home/AddJobTitle'"/>
+                          </td>
+                      </tr>
+                   </table>
+               </td>
+           </tr>
+        </table>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

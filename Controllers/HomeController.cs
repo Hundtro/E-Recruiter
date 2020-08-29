@@ -123,6 +123,21 @@ namespace erecruiter
             }
         }
 
+        [Route("/Home/ManageRecruitment")]
+        public IActionResult ManageRecruitment()
+        {
+            if(Session.isLogged)
+            {
+                //ViewData[] =
+                ViewData["JobTitles"] = new JobTitleController(this.configuration).GetJobTitles();    
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
+        }
+
         //another actions
         
         [Route("/Logout")]
