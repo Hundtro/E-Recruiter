@@ -128,7 +128,7 @@ namespace erecruiter
         {
             if(Session.isLogged)
             {
-                //ViewData[] =
+                //ViewData[] = hire processes
                 ViewData["JobTitles"] = new JobTitleController(this.configuration).GetJobTitles();    
                 return View();
             }
@@ -138,6 +138,20 @@ namespace erecruiter
             }
         }
 
+        [Route("/Home/UpdateJobTitle")]
+        public IActionResult UpdateJobTitle(string id)
+        {
+            if(Session.isLogged)
+            {
+                ViewData["JobTitle"] = new JobTitleController(this.configuration).GetJobTitle(id);    
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
+        }
+ 
         //another actions
         
         [Route("/Logout")]

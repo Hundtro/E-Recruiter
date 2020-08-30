@@ -1,0 +1,33 @@
+@model erecruiter.JobTitle;
+@{
+    var jobTitle = ViewData["JobTitle"] as erecruiter.JobTitle;
+}
+
+<link rel="stylesheet" href="~/css/update-jobtitle.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>Update job title</p>
+        <hr>
+    </div>
+	<div class="update-jobtitle">
+        <form action="/UpdateJobTitle" enctype="multipart/form-data" method="post">
+           <input type="hidden" name="Id" value="@jobTitle.Id">           
+           <div class="input">Title</div>
+           <div class="input"><input type="text" name="Title" value="@jobTitle.Title"/></div>
+           <div class="input">Default salary</div>
+           @if (String.IsNullOrEmpty(@jobTitle.DefaultSalary))
+           {
+           <div class="input"><input type="text" name="DefaultSalary"/></div>
+           }
+           else
+           {
+           <div class="input"><input type="text" name="DefaultSalary" value="@jobTitle.DefaultSalary"/></div>
+           }
+           <div class="input">Description</div>          
+           <div class="input-text"><textarea rows=6 cols=25 name="Description">@jobTitle.Description</textarea></div>
+           <div class="input-button"><input class="button button-add" type="submit" value="Update"></div>
+        </form>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

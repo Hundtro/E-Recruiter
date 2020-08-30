@@ -233,5 +233,23 @@ namespace erecruiter
             //
             return query;
         }
+
+        public static string UpdateJobTitle(JobTitle jobTitle)
+        {
+            string query = File.ReadAllText("Data/UpdateJobTitle.sql");
+            query = query.Replace("?title?", jobTitle.Title);
+            query = query.Replace("?defaultsalary?", jobTitle.DefaultSalary);
+            query = query.Replace("?description?", jobTitle.Description);
+            query = query.Replace("?id?", jobTitle.Id);
+Log.Add(query);
+            return query;
+        }
+
+        public static string GetHireSteps(string jobTitleId)
+        {
+            string query = File.ReadAllText("Data/GetHireSteps.sql");
+            query = query.Replace("?id?", jobTitleId);
+            return query;
+        }
     }
 }

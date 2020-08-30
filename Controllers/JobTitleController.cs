@@ -20,19 +20,19 @@ namespace erecruiter
         {
             List<JobTitle> jobTitles = new List<JobTitle>();
 
-			dbAdapter.ExecuteSelectCommand(SqlProcedures.GetJobTitles());
-			while(dbAdapter.MoveToNextRow())
-			{
+            dbAdapter.ExecuteSelectCommand(SqlProcedures.GetJobTitles());
+            while(dbAdapter.MoveToNextRow())
+            {
                 JobTitle jobTitle = new JobTitle();
-                
+
                 jobTitle.Id = dbAdapter.GetColumnValue("Id");
                 jobTitle.Title = dbAdapter.GetColumnValue("Title");
 
                 jobTitles.Add(jobTitle);
-			}
-			dbAdapter.ClearData();
+            }
+            dbAdapter.ClearData();
 
-			return jobTitles;
+            return jobTitles;
         }
 
         public JobTitle GetJobTitle(string jobTitleId)
@@ -67,11 +67,20 @@ namespace erecruiter
         public IActionResult ViewJobTitle(string jobTitleId)
         {
             JobTitle jobTitle = GetJobTitle(jobTitleId); 
-            List<HireStep> hireSteps = new List<HireStep>();  //new ExperienceController(this.configuration).GetExperiences(id);
+            List<HireStep> hireSteps = new HireStepController(this.configuration).GetHireSteps(jobTitleId);
 
             ViewData["JobTitle"] = jobTitle; 
             ViewData["HireSteps"] = hireSteps;
             return View("~/Views/Home/JobTitleView.cshtml");
+        }
+
+        [HttpPost]
+        [Route("/UpdateJobTitle")]
+        public IActionResult UpdateJobTitle(JobTitle jobTitle)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.UpdateJobTitle(jobTitle));
+
+            return Redirect("/Home/ManageRecruitment");
         }
     }
 }

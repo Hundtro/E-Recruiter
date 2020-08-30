@@ -10,15 +10,22 @@
         <table class="main-table">
             <tr>
                 <td width="50%">
-                    <div class="job-attribute">Title: Junior Senior Pomidor</div>
-                    <div class="job-attribute">Default salary: 3000$</div>
-                    <div class="job-attribute">CreatedBy: banan</div>
-                    <div class="job-attribute">
+                    <div class="job-attribute">Title: @jobTitle.Title</div>
+                    @if (String.IsNullOrEmpty(jobTitle.DefaultSalary))
+                    {
+                    <div class="job-attribute">Default salary: not set</div>
+                    }
+                    else
+                    {
+                    <div class="job-attribute">Default salary: @jobTitle.DefaultSalary</div>
+                    }
+                    <div class="job-attribute">CreatedBy: @jobTitle.CreatedBy</div>
+                    <div>
                         <table class="inner-table">
                             <tr>
                                 <td width="50%">
                                     <form action="/Home/UpdateJobTitle" method="post">
-                                        <input type="hidden" name="jobTitleId" value="@jobTitle.Id"/>
+                                        <input type="hidden" name="id" value="@jobTitle.Id"/>
                                         <input class="button button-change" type="submit" value="Edit"/>
                                     </form>       
                                 </td>
@@ -34,10 +41,44 @@
                 </td>
                 <td width="50%">
                     <div class="desc-title">Description</div>
-                    <div class="desc-text"></div>
+                    <div class="desc-text">@jobTitle.Description</div>
                 </td>
             </tr>
         </table>
+        <div class="step-div">
+            <p><b>Hire steps</b></p>
+            @if (hireSteps.Count != 0)
+            {
+            <table class="step-table">
+                <tr>
+                    <th>Order</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+                @for(int i = 0; i < hireSteps.Count; i++)
+                {
+                <form action="/DeleteHireStep" method="post">
+                <tr>
+                    <input type="hidden" name="Id" value="@hireSteps[i].Id"/>
+                    <td>@hireSteps[i].Order</td>
+                    <td>@hireSteps[i].Name</td>
+                    <td>@hireSteps[i].Description</td>
+                    <td><input class="button" type="submit" value="Delete"/></td>
+                </tr>
+                </form> 
+                }
+            </table>
+            }
+            else
+            {
+            <p>No hire steps found</p>
+            }
+            <form action="/AddHireStep" method="post">
+                <input type="hidden" name="jobTitleId" value="@jobTitle.Id"/>
+                <input class="button button-add" type="submit" value="Add step"/>
+            </form>
+        </div>
     </div>
     @await Html.PartialAsync("_Footer")
 </div>

@@ -21,8 +21,8 @@ namespace erecruiter
 			List<Candidate> candidates = new List<Candidate>();
 
 			dbAdapter.ExecuteSelectCommand(SqlProcedures.GetCandidates(name, surname));
-			while(dbAdapter.MoveToNextRow())
-			{
+            while(dbAdapter.MoveToNextRow())
+            {
                 Candidate candidate = new Candidate();
                 
                 candidate.Id = dbAdapter.GetColumnValue("Id");
@@ -31,10 +31,10 @@ namespace erecruiter
                 candidate.PhotoData = dbAdapter.GetColumnValue("Photo");
 
                 candidates.Add(candidate);
-			}
-			dbAdapter.ClearData();
+            }
+            dbAdapter.ClearData();
 
-			return candidates;
+            return candidates;
         }
 
         public Candidate GetCandidate(string id)
