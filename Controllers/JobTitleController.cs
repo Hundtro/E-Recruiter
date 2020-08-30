@@ -82,5 +82,14 @@ namespace erecruiter
 
             return Redirect("/Home/ManageRecruitment");
         }
+
+        [HttpPost]
+        [Route("/DeleteJobTitle")]
+        public IActionResult DeleteJobTitle(string id)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.DeleteJobTitle(id));
+
+            return Redirect("/Home/ManageRecruitment");
+        }
     }
 }

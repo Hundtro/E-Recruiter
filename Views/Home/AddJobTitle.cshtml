@@ -1,0 +1,22 @@
+@model erecruiter.JobTitle
+
+<link rel="stylesheet" href="~/css/add-jobtitle.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>Add job title</p>
+        <hr>
+    </div>
+    <div class="jobtitle-add">
+        <form action="/InsertJobTitle" method="post">
+            <div class="input">Title</div>
+            <div class="input"><input type="text" name="Title"/></div>
+            <div class="input">Default salary</div>
+            <div class="input"><input type="text" name="DefaultSalary"/></div>           
+            <div class="input">Description</div>
+            <div class="input-text"><textarea rows=4 cols=20 name="Description"></textarea></div>
+            <div class="input-button"><input class="button button-add" type="submit" value="Add"></div>
+        </form>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

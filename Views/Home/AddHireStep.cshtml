@@ -1,0 +1,25 @@
+@model erecruiter.HireStep
+@{
+    var jobTitleId = ViewData["jobTitleId"];
+    var jobTitleName = ViewData["jobTitleName"];
+}
+
+<link rel="stylesheet" href="~/css/add-hirestep.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>Add hire step for @jobTitleName</p>
+        <hr>
+    </div>
+    <div class="hirestep-add">
+        <form action="/InsertHireStep" method="post">
+            <input type="hidden" name="JobTitleId" value="@jobTitleId">            
+            <div class="input">Name</div>
+            <div class="input"><input type="text" name="Name"/></div>
+            <div class="input">Description</div>
+            <div class="input-text"><textarea rows=3 cols=20 name="Description"></textarea></div>
+            <div class="input-button"><input class="button button-add" type="submit" value="Add"></div>
+        </form>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

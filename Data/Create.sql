@@ -62,7 +62,7 @@ CREATE TABLE Experience (
 CREATE TABLE HireStep (
     "Id"            INTEGER PRIMARY KEY AUTOINCREMENT,
     "JobTitleId"    INTEGER NOT NULL,
-    "Order"         INTEGER NOT NULL,
+    "OrderNo"       INTEGER NOT NULL,
     "Name"          TEXT NOT NULL,
     "Description"   TEXT,
     FOREIGN KEY(JobTitleId) REFERENCES JobTitle(Id)
@@ -83,4 +83,4 @@ CREATE TABLE HireProcess (
 
 INSERT INTO main.User ("Login", "Password", "FullName", "CanEdit", "CanConfig") VALUES ("admin", "admin", "admin", 1, 1);  
 INSERT INTO main.JobTitle ("Title", "DefaultSalary", "CreatedBy") VALUES ('General', 0, (SELECT Id FROM main.User WHERE Login ='admin'));
-INSERT INTO main.HireStep ("JobTitleId", "Order", "Name") VALUES ((SELECT Id FROM main.JobTitle WHERE Title = 'General'), 1, 'Default');
+INSERT INTO main.HireStep ("JobTitleId", "OrderNo", "Name") VALUES ((SELECT Id FROM main.JobTitle WHERE Title = 'General'), 1, 'Default');

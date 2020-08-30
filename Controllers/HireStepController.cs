@@ -27,15 +27,33 @@ namespace erecruiter
 
                 hireStep.Id = dbAdapter.GetColumnValue("Id");
                 hireStep.JobTitleId = jobTitleId;
-                hireStep.Order = dbAdapter.GetColumnValue("Order");
+                hireStep.OrderNo = dbAdapter.GetColumnValue("OrderNo");
                 hireStep.Name = dbAdapter.GetColumnValue("Name");
-                hireStep.Id = dbAdapter.GetColumnValue("Description");
+                hireStep.Description = dbAdapter.GetColumnValue("Description");
 
                 hireSteps.Add(hireStep);
             }
             dbAdapter.ClearData();
 
             return hireSteps;
+        }
+
+        [HttpPost]
+        [Route("/InsertHireStep")]
+        public IActionResult InsertHireStep(HireStep hireStep)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.AddHireStep(hireStep));
+
+            return Redirect("/Home/ManageRecruitment");
+        }
+
+        [HttpPost]
+        [Route("/DeleteHireStep")]
+        public IActionResult DeleteHireStep(string id)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.DeleteHireStep(id));
+
+            return Redirect("/Home/ManageRecruitment");
         }
     }
 }

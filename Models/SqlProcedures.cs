@@ -230,7 +230,10 @@ namespace erecruiter
         public static string AddJobTitle(JobTitle jobTitle)
         {
             string query = File.ReadAllText("Data/AddJobTitle.sql");
-            //
+            query = query.Replace("?title?", jobTitle.Title);
+            query = query.Replace("?defaultsalary?", jobTitle.DefaultSalary);
+            query = query.Replace("?description?", jobTitle.Description);
+            query = query.Replace("?createdby?", Session.UserId);
             return query;
         }
 
@@ -241,7 +244,14 @@ namespace erecruiter
             query = query.Replace("?defaultsalary?", jobTitle.DefaultSalary);
             query = query.Replace("?description?", jobTitle.Description);
             query = query.Replace("?id?", jobTitle.Id);
-Log.Add(query);
+
+            return query;
+        }
+
+        public static string DeleteJobTitle(string id)
+        {
+            string query = File.ReadAllText("Data/DeleteJobTitle.sql");
+            query = query.Replace("?id?", id);
             return query;
         }
 
@@ -251,5 +261,23 @@ Log.Add(query);
             query = query.Replace("?id?", jobTitleId);
             return query;
         }
+
+        public static string AddHireStep(HireStep hireStep)
+        {
+            string query = File.ReadAllText("Data/AddHireStep.sql");
+            query = query.Replace("?jobTitleId?", hireStep.JobTitleId);
+            query = query.Replace("?name?", hireStep.Name);
+            query = query.Replace("?description?", hireStep.Description);
+            return query; 
+        }
+
+        public static string DeleteHireStep(string id)
+        {
+            string query = File.ReadAllText("Data/DeleteHireStep.sql");
+            query = query.Replace("?id?", id);
+
+            return query;
+        }
     }
 }
+

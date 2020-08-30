@@ -1,7 +1,7 @@
 SELECT
     Id AS Id,
     JobTitleId AS JobTitleId, 
-    "Order",
+    OrderNo AS OrderNo,
     Name AS Name,
     Description AS Description
 FROM main.HireStep

@@ -1,0 +1,42 @@
+@import "body.css";
+@import "menu.css";
+@import "footer.css";
+
+.jobtitle-add {
+    flex-grow: 1;
+    width: 40%;
+    margin-left: 30%;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.input {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 2%;
+}
+
+.input-text {
+    margin-top: 2%;
+}
+
+.input-text textarea {
+    font-size: 18px;
+    resize: none;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.input-button {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.button-add {
+    font-size: 20px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+}

@@ -138,6 +138,19 @@ namespace erecruiter
             }
         }
 
+        [Route("/Home/AddJobTitle")]
+        public IActionResult AddJobTitle()
+        {
+            if(Session.isLogged)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
+        }
+
         [Route("/Home/UpdateJobTitle")]
         public IActionResult UpdateJobTitle(string id)
         {
@@ -149,6 +162,21 @@ namespace erecruiter
             else
             {
                 return Redirect("/");
+            }
+        }
+
+        [Route("/Home/AddHireStep")]
+        public IActionResult AddHireStep(string jobTitleId, string jobTitleName)
+        {
+            if(Session.isLogged)
+            {
+                ViewData["jobTitleId"] = jobTitleId;
+                ViewData["jobTitleName"] = jobTitleName;
+                return View();
+            }
+            else
+            {
+                return Redirect("/"); 
             }
         }
  
