@@ -1,4 +1,5 @@
 @{
+    var hireProcesses = ViewData["hireProcesses"] as List<erecruiter.HireProcess>;
     var jobTitles = ViewData["JobTitles"] as List<erecruiter.JobTitle>;
 }
 
@@ -21,7 +22,28 @@
                       <tr class="main-tr">
                           <td>
                               <div class="text">
+                              @if (hireProcesses.Count != 0)
+                              {
+                              <table class="inner-table">
+                                  @for (int i = 0; i < hireProcesses.Count; i++)
+                                  {
+                                  <tr>
+                                      <td width="40%">@hireProcesses[i].CandidateName</td>
+                                      <td width="40%">@hireProcesses[i].JobTitleName</td>
+                                      <td width="20%">
+                                          <form action="/ViewHireProcess" method="post">
+                                              <input type="hidden" name="hireProcessId" value="@hireProcesses[i].Id"/>
+                                              <input class="button button-view" type="submit" value="View"/>
+                                          </form>
+                                      </td>
+                                  </tr>
+                                  }
+                              </table>
+                              }
+                              else
+                              {
                               <p class="info-text">No hire processes found</p>
+                              }                             
                               </div>
                           </td>
                       </tr>

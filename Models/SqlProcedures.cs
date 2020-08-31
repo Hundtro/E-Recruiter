@@ -278,6 +278,12 @@ namespace erecruiter
 
             return query;
         }
+
+        public static string GetHireProcesses()
+        {
+            string query = File.ReadAllText("Data/GetHireProcesses.sql");
+            return query;
+        }
     }
 }
 

@@ -128,7 +128,7 @@ namespace erecruiter
         {
             if(Session.isLogged)
             {
-                //ViewData[] = hire processes
+                ViewData["HireProcesses"] = new HireProcessController(this.configuration).GetHireProcesses();
                 ViewData["JobTitles"] = new JobTitleController(this.configuration).GetJobTitles();    
                 return View();
             }
