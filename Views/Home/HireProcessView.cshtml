@@ -1,12 +1,62 @@
 @{
    var hireProcess = ViewData["HireProcess"] as erecruiter.HireProcess;
+   var nextHireStep = ViewData["NextHireStep"] as System.String;
 }
 
 <link rel="stylesheet" href="~/css/hireprocess.css"/>
 <div class="content">
     @await Html.PartialAsync("_Menu")
     <div class="hireprocess">
-    Test
+        <table class="main-talbe">
+            <tr>
+                <td width="50%">
+                    <div class="info">Candidate: @hireProcess.CandidateName</div>
+                    <div class="info">Job title: @hireProcess.JobTitleName</div>
+                    <div class="info">Current step: @hireProcess.StepName</div>
+                    <div class="info-buttons">
+                        <table class="inner-table">
+                            <tr>
+                                <td width="50%">
+                                @if (String.IsNullOrEmpty(nextHireStep))
+                                {
+                                    <p></p> 
+                                }
+                                else
+                                {
+                                    <form action="/UpdateHireStep" method="post">
+                                        <input type="hidden" name="hireProcessId" value="@hireProcess.Id"/>
+                                        <input type="hidden" name="nextStepId" value="@nextHireStep"/>
+                                        <input class="button button-edit" type="submit" value="Next step"/>       
+                                    </form>
+                                }
+                                </td>
+                                <td width="50%">
+                                    <form action="/CloseHireProcess" method="post">
+                                        <input type="hidden" name="hireProcessId" value="@hireProcess.Id"/>
+                                        <input class="button button-edit" type="submit" value="Close process"/> 
+                                    </form> 
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td width="50%">
+                    <form class="comments">
+                        <div class="comments-header">
+                            <table class="inner-table" style="border-spacing: 0px;">
+                                <tr>
+                                    <td style="font-size: 20px; text-align: left; vertical-align: text-top;">Comments</td>
+                                    <td style="text-align: right"><input class="button button-save" type="submit" value="Save"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="comments-text">
+                            <textarea rows=4 cols=20 name="Description"></textarea>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </table>
     </div>
     @await Html.PartialAsync("_Footer")
 </div>

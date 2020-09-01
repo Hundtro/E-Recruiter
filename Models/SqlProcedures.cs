@@ -284,6 +284,13 @@ namespace erecruiter
             string query = File.ReadAllText("Data/GetHireProcesses.sql");
             return query;
         }
+
+        public static string GetHireProcess(string id)
+        {
+            string query = File.ReadAllText("Data/GetHireProcess.sql");
+            query = query.Replace("?id?", id);
+            return query;
+        }
     }
 }
 

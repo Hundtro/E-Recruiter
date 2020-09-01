@@ -37,13 +37,31 @@ namespace erecruiter
 
             return hireProcesses;
         }
+        
+        public HireProcess GetHireProcess(string id)
+        {
+            HireProcess hireProcess = new HireProcess();
+
+            dbAdapter.ExecuteSelectCommand(SqlProcedures.GetHireProcess(id));
+            while(dbAdapter.MoveToNextRow())
+            {
+                hireProcess.Id = dbAdapter.GetColumnValue("Id");
+                hireProcess.CandidateName = dbAdapter.GetColumnValue("Candidate");
+                hireProcess.JobTitleName = dbAdapter.GetColumnValue("JobTitle");
+                hireProcess.StepName = dbAdapter.GetColumnValue("Step");
+                hireProcess.Comments = dbAdapter.GetColumnValue("Comments");
+            }
+            dbAdapter.ClearData();
+
+            return hireProcess;
+        }
 
         [HttpPost]
         [Route("/ViewHireProcess")]
         public IActionResult ViewHireProcess(string hireProcessId)
         {
-            HireProcess jobProcess = new HireProcess();//GetHireProcess(hireProcessId); 
-
+            ViewData["HireProcess"] = GetHireProcess(hireProcessId);
+            ViewData["NextHireStep"] = "1234";
             return View("~/Views/Home/HireProcessView.cshtml");
         }
     }
