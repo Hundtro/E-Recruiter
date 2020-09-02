@@ -1,0 +1,7 @@
+@import "body.css";
+@import "menu.css";
+@import "footer.css";
+
+.new-hireprocess {
+    flex-grow: 1;
+}

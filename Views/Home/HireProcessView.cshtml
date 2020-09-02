@@ -32,7 +32,7 @@
                                 </td>
                                 <td width="50%">
                                     <form action="/CloseHireProcess" method="post">
-                                        <input type="hidden" name="hireProcessId" value="@hireProcess.Id"/>
+                                        <input type="hidden" name="id" value="@hireProcess.Id"/>
                                         <input class="button button-edit" type="submit" value="Close process"/> 
                                     </form> 
                                 </td>
@@ -41,7 +41,7 @@
                     </div>
                 </td>
                 <td width="50%">
-                    <form class="comments">
+                    <form class="comments" action="/UpdateHireComments" method="post">
                         <div class="comments-header">
                             <table class="inner-table" style="border-spacing: 0px;">
                                 <tr>
@@ -51,7 +51,8 @@
                             </table>
                         </div>
                         <div class="comments-text">
-                            <textarea rows=4 cols=20 name="Description"></textarea>
+                            <input type="hidden" name="hireProcessId" value="@hireProcess.Id"/>
+                            <textarea rows=4 cols=20 name="comments">@hireProcess.Comments</textarea>
                         </div>
                     </form>
                 </td>

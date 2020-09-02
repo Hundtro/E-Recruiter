@@ -289,6 +289,45 @@ namespace erecruiter
         {
             string query = File.ReadAllText("Data/GetHireProcess.sql");
             query = query.Replace("?id?", id);
+            Log.Add(query);
+            return query;
+        }
+
+        public static string UpdateHireComments(string id, string comments)
+        {
+            string query = File.ReadAllText("Data/UpdateHireComments.sql");
+            query = query.Replace("?id?", id);
+            query = query.Replace("?comments?", comments);
+            return query;
+        }
+
+        public static string GetNextHireStepId(string hireProcessId)
+        {
+            string query = File.ReadAllText("Data/GetNextStepId.sql");
+            query = query.Replace("?id?", hireProcessId);
+            return query;
+        }
+
+        public static string UpdateNextHireStep(string hireProcessId, string hireStepId)
+        {
+            string query = File.ReadAllText("Data/UpdateNextHireStep.sql");
+            query = query.Replace("?hireid?", hireProcessId);
+            query = query.Replace("?stepid?", hireStepId);
+            return query;
+        }
+
+        public static string CloseHireProcess(string id)
+        {
+            string query = File.ReadAllText("Data/CloseHireProcess.sql");
+            query = query.Replace("?id?", id);
+            return query;
+        }
+
+        public static string AddHireProcess(string candidateId, string jobTitleId)
+        {
+            string query = File.ReadAllText("Data/AddHireProcess.sql");
+            query = query.Replace("?candidateid?", candidateId);
+            query = query.Replace("?jobtitleid?", jobTitleId);
             return query;
         }
     }

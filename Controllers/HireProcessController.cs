@@ -45,7 +45,7 @@ namespace erecruiter
             dbAdapter.ExecuteSelectCommand(SqlProcedures.GetHireProcess(id));
             while(dbAdapter.MoveToNextRow())
             {
-                hireProcess.Id = dbAdapter.GetColumnValue("Id");
+                hireProcess.Id = id;
                 hireProcess.CandidateName = dbAdapter.GetColumnValue("Candidate");
                 hireProcess.JobTitleName = dbAdapter.GetColumnValue("JobTitle");
                 hireProcess.StepName = dbAdapter.GetColumnValue("Step");
@@ -56,13 +56,63 @@ namespace erecruiter
             return hireProcess;
         }
 
+        public string GetNextHireStep(string id)
+        {
+            string stepId;
+
+            dbAdapter.ExecuteSelectCommand(SqlProcedures.GetNextHireStepId(id));
+            if(dbAdapter.MoveToNextRow())
+                stepId = dbAdapter.GetColumnValue("StepId");
+            else
+                stepId = System.String.Empty;
+            dbAdapter.ClearData();
+
+            return stepId;
+        }
+
         [HttpPost]
         [Route("/ViewHireProcess")]
         public IActionResult ViewHireProcess(string hireProcessId)
         {
             ViewData["HireProcess"] = GetHireProcess(hireProcessId);
-            ViewData["NextHireStep"] = "1234";
+            ViewData["NextHireStep"] = GetNextHireStep(hireProcessId);
             return View("~/Views/Home/HireProcessView.cshtml");
         }
+
+        [HttpPost]
+        [Route("/UpdateHireComments")]
+        public IActionResult UpdateHireComments(string hireProcessId, string comments)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.UpdateHireComments(hireProcessId, comments));
+
+            return Redirect("/Home/ManageRecruitment");
+        }
+
+        [HttpPost]
+        [Route("/UpdateHireStep")]
+        public IActionResult UpdateHireStep(string hireProcessId, string nextStepId)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.UpdateNextHireStep(hireProcessId, nextStepId));
+
+            return Redirect("/Home/ManageRecruitment");
+        }
+
+        [HttpPost]
+        [Route("/CloseHireProcess")]
+        public IActionResult CloseHireProcess(string id)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.CloseHireProcess(id));
+
+            return Redirect("/Home/ManageRecruitment");
+        }
+
+        [HttpPost]
+        [Route("/InsertHireProcess")]
+        public IActionResult InsertHireProcess(string candidateId, string jobTitleId)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.AddHireProcess(candidateId, jobTitleId));
+
+            return Redirect("/Home/ManageRecruitment");
+        } 
     }
 }

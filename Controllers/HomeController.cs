@@ -156,7 +156,7 @@ namespace erecruiter
         {
             if(Session.isLogged)
             {
-                ViewData["JobTitle"] = new JobTitleController(this.configuration).GetJobTitle(id);    
+                ViewData["JobTitle"] = new JobTitleController(this.configuration).GetJobTitle(id); 
                 return View();
             }
             else
@@ -179,7 +179,22 @@ namespace erecruiter
                 return Redirect("/"); 
             }
         }
- 
+        
+        [Route("/Home/NewHireProcess")]
+        public IActionResult NewHireProcess()
+        {
+            if(Session.isLogged)
+            {
+                ViewData["Candidates"] = new CandidateController(this.configuration).GetCandidates("", "");
+                ViewData["JobTitles"] = new JobTitleController(this.configuration).GetJobTitles();
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
+        }
+
         //another actions
         
         [Route("/Logout")]

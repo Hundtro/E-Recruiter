@@ -1,0 +1,39 @@
+@{
+    var candidates = ViewData["Candidates"] as List<erecruiter.Candidate>;
+    var jobTitles = ViewData["JobTitles"] as List<erecruiter.JobTitle>;
+}
+
+<link rel="stylesheet" href="~/css/new-hireprocess.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>New hire process</p>
+        <hr>
+    </div>
+	<div class="new-hireprocess">
+        <form action="/InsertHireProcess" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <select name="candidateId">
+                        @for(int i = 0; i < candidates.Count; i++)
+                        {
+                            <option value="@candidates[i].Id">@candidates[i].Name @candidates[i].Surname</option>
+                        }
+                        </select>
+                    </td>
+                    <td>
+                        <select name="jobTitleId">
+                        @for(int i = 0; i < jobTitles.Count; i++)
+                        {
+                            <option value="@jobTitles[i].Id">@jobTitles[i].Title</option>
+                        }                         
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <input class="button button-start" type="submit" value="Start process">
+        </form>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

@@ -1,5 +1,5 @@
 SELECT
-    candidate.Id AS Id,
+    process.Id AS Id,
     candidate.Name || ' ' || candidate.Surname AS Candidate,
     title.Title AS JobTitle,
     step.Name AS Step,
