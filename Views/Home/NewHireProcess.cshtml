@@ -12,9 +12,13 @@
     </div>
 	<div class="new-hireprocess">
         <form action="/InsertHireProcess" method="post">
-            <table>
+            <table class="main-table">
                 <tr>
-                    <td>
+                    <th width="50%">Candidate</th>
+                    <th width="50%">Job title</th>
+                </tr>
+                <tr>
+                    <td width="50%">
                         <select name="candidateId">
                         @for(int i = 0; i < candidates.Count; i++)
                         {
@@ -22,7 +26,7 @@
                         }
                         </select>
                     </td>
-                    <td>
+                    <td width="50%">
                         <select name="jobTitleId">
                         @for(int i = 0; i < jobTitles.Count; i++)
                         {

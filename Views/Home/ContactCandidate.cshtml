@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="~/css/contact.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>Contact candidate</p>
+        <hr>
+    </div>
+	<div class="contact">
+        <table class="main-table">
+            <tr>
+                <td width="50%">
+                    <form class="send-form" action="/SendEmail" method="post">
+                        <div class="adress-div">
+                            <label for="Adress">Adress: </label>
+                            <input type="text" name="Adress" value="example@dot.com..">
+                        </div>
+                        <div class="subj-div">
+                            <input type="text" name="Title" value="Subject..">
+                        </div>
+                        <div class="text-div">
+                            <textarea rows="6" cols="40" name="Message"> Message text..</textarea>
+                        </div>
+                        <div class="send-div">
+                            <input class="button button-send" type="submit" value="Send">
+                        </div>
+                    </form>
+                </td>
+                <td width="50%">
+                    <div class="template-div">
+                       <p>No email templates found</p>
+                    </div>
+                    <input class="button button-add" type="button" value="Add email template"
+                     onclick="location.href='/Home/AddEmailTemplate'"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

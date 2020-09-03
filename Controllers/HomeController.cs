@@ -195,7 +195,18 @@ namespace erecruiter
             }
         }
 
-        //another actions
+        [Route("/Home/ContactCandidate")]
+        public IActionResult ContactCandidate()
+        {
+            if(Session.isLogged)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
+        }
         
         [Route("/Logout")]
         public IActionResult Logout()
