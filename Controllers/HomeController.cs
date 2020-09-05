@@ -200,6 +200,7 @@ namespace erecruiter
         {
             if(Session.isLogged)
             {
+                ViewData["emailTemplates"] = new EmailTemplateController(this.configuration).GetEmailTemplates();
                 return View();
             }
             else
@@ -207,7 +208,29 @@ namespace erecruiter
                 return Redirect("/");
             }
         }
-        
+       
+        [HttpPost]
+        [Route("/SendEmail")]
+        public IActionResult ViewHireProcess(string subject, string text, string adress)
+        {
+            EmailSender.Send(subject, text, adress, this.configuration);
+
+            return Redirect("/Home");
+        }
+
+        [Route("/Home/AddEmailTemplate")]
+        public IActionResult AddEmailTemplate()
+        {
+            if(Session.isLogged)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
+        }
+ 
         [Route("/Logout")]
         public IActionResult Logout()
         {

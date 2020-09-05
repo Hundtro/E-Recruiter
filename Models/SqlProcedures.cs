@@ -330,6 +330,20 @@ namespace erecruiter
             query = query.Replace("?jobtitleid?", jobTitleId);
             return query;
         }
+        
+        public static string GetEmailTemplates()
+        {
+            string query = File.ReadAllText("Data/GetEmailTemplates.sql");
+            return query;
+        }
+
+        public static string AddEmailTemplate(EmailTemplate emailTemplate)
+        {
+            string query = File.ReadAllText("Data/AddEmailTemplate.sql");
+            query = query.Replace("?title?", emailTemplate.Title);
+            query = query.Replace("?message?", emailTemplate.Message);
+            return query;
+        }
     }
 }
 

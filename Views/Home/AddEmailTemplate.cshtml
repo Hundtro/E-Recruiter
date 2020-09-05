@@ -1,0 +1,21 @@
+@model erecruiter.EmailTemplate
+
+
+<link rel="stylesheet" href="~/css/add-template.css"/>
+<div class="content">
+	@await Html.PartialAsync("_Menu")
+	<div class="title">
+		<p>Add email template</p>
+		<hr>
+	</div>
+	<div class="template-add">
+        <form action="/InsertEmailTemplate" method="post">
+            <div class="input">Subject</div>
+            <div class="input"><input type="text" name="Title"/></div>
+            <div class="input">Message text</div>
+            <div class="input-text"><textarea rows=10 cols=20 name="Message"></textarea></div>
+            <div class="input-button"><input class="button button-add" type="submit" value="Add"></div>
+        </form>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div

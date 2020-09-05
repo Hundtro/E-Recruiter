@@ -5,3 +5,4 @@ bin/
 obj/
 Data/data.db
 log
+config.json
