@@ -1,4 +1,5 @@
 using System.IO;
+using System;
 
 namespace erecruiter
 {
@@ -6,7 +7,8 @@ namespace erecruiter
     {
         public static void Add(string message)
         {
-            File.WriteAllText("log", message);
+            string time = DateTime.Now.ToString();
+            File.AppendAllText("log", time + " " + message + Environment.NewLine);
         }
     }
 }

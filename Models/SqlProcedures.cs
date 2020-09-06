@@ -344,6 +344,22 @@ namespace erecruiter
             query = query.Replace("?message?", emailTemplate.Message);
             return query;
         }
+
+        public static string GetEmailTemplate(string id)
+        {
+            string query = File.ReadAllText("Data/GetEmailTemplate.sql");
+            query = query.Replace("?id?", id);
+            return query;
+        }
+
+        public static string UpdateEmailTemplate(EmailTemplate emailTemplate)
+        {
+            string query = File.ReadAllText("Data/UpdateEmailTemplate.sql");
+            query = query.Replace("?title?", emailTemplate.Title);
+            query = query.Replace("?message?", emailTemplate.Message);
+            query = query.Replace("?id?", emailTemplate.Id);
+            return query;
+        }
     }
 }
 

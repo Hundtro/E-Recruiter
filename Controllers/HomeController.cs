@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
+using System;
 
 namespace erecruiter
 {
@@ -196,11 +197,18 @@ namespace erecruiter
         }
 
         [Route("/Home/ContactCandidate")]
-        public IActionResult ContactCandidate()
+        public IActionResult ContactCandidate(string title, string text)
         {
             if(Session.isLogged)
             {
-                ViewData["emailTemplates"] = new EmailTemplateController(this.configuration).GetEmailTemplates();
+                if(String.IsNullOrEmpty(title))
+                    title = "Subject...";
+                if(String.IsNullOrEmpty(text))
+                    text = "Message text...";
+ 
+                ViewData["DefaultTitle"] = title;
+                ViewData["DefaultText"] = text;
+                ViewData["EmailTemplates"] = new EmailTemplateController(this.configuration).GetEmailTemplates();
                 return View();
             }
             else
@@ -213,9 +221,20 @@ namespace erecruiter
         [Route("/SendEmail")]
         public IActionResult ViewHireProcess(string subject, string text, string adress)
         {
-            EmailSender.Send(subject, text, adress, this.configuration);
+            try
+            {
+                EmailSender.Send(subject, text, adress, this.configuration);
 
-            return Redirect("/Home");
+                return Redirect("/Home");
+            }
+            catch(System.Exception e)
+            {
+                Log.Add(e.Message);
+                ViewData["ErrorText"] = "An error occured while sending email";
+                return View("~/Views/Shared/_Error.cshtml");
+            }
+  
+            
         }
 
         [Route("/Home/AddEmailTemplate")]
@@ -230,7 +249,22 @@ namespace erecruiter
                 return Redirect("/");
             }
         }
- 
+
+        [Route("/Home/UpdateEmailTemplate")]
+        public IActionResult UpdateEmailTemplate(string id)
+        {
+            if(Session.isLogged)
+            {
+                ViewData["EmailTemplate"] = new EmailTemplateController(this.configuration).GetEmailTemplate(id); 
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
+        }
+
+         
         [Route("/Logout")]
         public IActionResult Logout()
         {

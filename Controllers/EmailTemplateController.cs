@@ -44,5 +44,50 @@ namespace erecruiter
 
             return Redirect("/Home/ContactCandidate");
         }
+
+        public EmailTemplate GetEmailTemplate(string id)
+        {
+            EmailTemplate emailTemplate = new EmailTemplate();
+
+            dbAdapter.ExecuteSelectCommand(SqlProcedures.GetEmailTemplate(id));
+            while(dbAdapter.MoveToNextRow())
+            {
+                emailTemplate.Id = dbAdapter.GetColumnValue("Id");
+                emailTemplate.Title = dbAdapter.GetColumnValue("Title");
+                emailTemplate.Message = dbAdapter.GetColumnValue("Message");
+            }
+            dbAdapter.ClearData();
+
+            return emailTemplate;
+        }
+
+        [HttpPost]
+        [Route("/UpdateEmailTemplate")]
+        public IActionResult UpdateEmailTemplate(EmailTemplate emailTemplate)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.UpdateEmailTemplate(emailTemplate));
+
+            return Redirect("/Home/ContactCandidate");
+        }
+
+        [HttpPost]
+        [Route("/SelectEmailTemplate")]
+        public IActionResult SelectEmailTemplate(string id)
+        {
+            EmailTemplate emailTemplate = new EmailTemplate();
+
+            dbAdapter.ExecuteSelectCommand(SqlProcedures.GetEmailTemplate(id));
+            while(dbAdapter.MoveToNextRow())
+            {
+                emailTemplate.Title = dbAdapter.GetColumnValue("Title");
+                emailTemplate.Message = dbAdapter.GetColumnValue("Message");
+            }
+            dbAdapter.ClearData();
+
+            ViewData["DefaultTitle"] = emailTemplate.Title;
+            ViewData["DefaultText"] = emailTemplate.Message;
+            ViewData["EmailTemplates"] = new EmailTemplateController(this.configuration).GetEmailTemplates();
+            return View("~/Views/Home/ContactCandidate.cshtml");
+        }
     }
 }

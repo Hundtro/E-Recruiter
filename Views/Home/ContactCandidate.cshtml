@@ -1,5 +1,7 @@
 @{
-    var emailTemplates = ViewData["emailTemplates"] as List<erecruiter.EmailTemplate>;
+    var emailTitle = ViewData["DefaultTitle"];
+    var emailText = ViewData["DefaultText"];
+    var emailTemplates = ViewData["EmailTemplates"] as List<erecruiter.EmailTemplate>;
 }
 
 
@@ -20,10 +22,10 @@
                             <input type="text" name="adress" value="example@dot.com..">
                         </div>
                         <div class="subj-div">
-                            <input type="text" name="subject" value="Subject..">
+                            <input type="text" name="subject" value="@emailTitle">
                         </div>
                         <div class="text-div">
-                            <textarea rows="6" cols="40" name="text"> Message text..</textarea>
+                            <textarea rows="6" cols="40" name="text">@emailText</textarea>
                         </div>
                         <div class="send-div">
                             <input class="button button-send" type="submit" value="Send">
@@ -40,10 +42,16 @@
                            <tr>
                               <td width="70%">@emailTemplates[i].Title</td>
                               <td width="15%">
-                                  <input class="button button-template" type="submit" value="Select"/>
+                                  <form class="form" action="/SelectEmailTemplate" method="post">
+                                      <input type="hidden" name="id" value="@emailTemplates[i].Id"/>
+                                      <input class="button button-template" type="submit" value="Select"/>
+                                  </form>
                               </td>
                               <td width="15%">
-                                  <input class="button button-template" type="submit" value="Edit"/>
+                                  <form class="form" action="/Home/UpdateEmailTemplate" method="post">
+                                      <input type="hidden" name="id" value="@emailTemplates[i].Id"/> 
+                                      <input class="button button-template" type="submit" value="Edit"/>
+                                  </form>
                               </td>
                            </tr>
                            }

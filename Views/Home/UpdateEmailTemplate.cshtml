@@ -1,0 +1,24 @@
+@model erecruiter.EmailTemplate
+@{
+    var emailTemplate = ViewData["EmailTemplate"] as erecruiter.EmailTemplate;
+}
+
+<link rel="stylesheet" href="~/css/update-template.css"/>
+<div class="content">
+	@await Html.PartialAsync("_Menu")
+	<div class="title">
+		<p>Update email template</p>
+		<hr>
+	</div>
+	<div class="template-update">
+        <form action="/UpdateEmailTemplate" method="post">
+            <input type="hidden" name="Id" value="@emailTemplate.Id">
+            <div class="input">Subject</div>
+            <div class="input"><input type="text" name="Title" value="@emailTemplate.Title"/></div>
+            <div class="input">Message text</div>
+            <div class="input-text"><textarea rows=10 cols=20 name="Message">@emailTemplate.Message</textarea></div>
+            <div class="input-button"><input class="button button-add" type="submit" value="Add"></div>
+        </form>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

@@ -1,0 +1,10 @@
+@{
+    var errorText = ViewData["ErrorText"];
+}
+
+<link rel="stylesheet" href="~/css/error.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="error"><br>Error!<br>@errorText<br></div>
+    @await Html.PartialAsync("_Footer")
+</div>
