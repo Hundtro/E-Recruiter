@@ -45,6 +45,7 @@ namespace erecruiter
         {
             if(Session.isLogged)
             {
+                ViewData["CanConfig"] = Session.CanConfig;
                 ViewData["UserName"] = Session.FullName;
                 ViewData["Reminders"] = new ReminderController(this.configuration).GetReminders();
                 return View();
@@ -63,7 +64,38 @@ namespace erecruiter
             else
                 return View(); 
         }
+
+        [Route("/Home/Configuration")]
+        public IActionResult Configuration()
+        {
+            if(Session.isLogged)
+            {
+                Configuration config = new Configuration();
+                config.database = this.configuration["database"];
+                config.emailAdress = this.configuration["emailAdress"];
+                config.emailPassword = this.configuration["emailPassword"];
+                config.smtpHost = this.configuration["smtpHost"];
+                config.smtpPort = this.configuration["smtpPort"];
+
+                ViewData["Configuration"] = config;
+                ViewData["Users"] = new UserController(this.configuration).GetUsers();
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }
+        }
         
+        [Route("/Home/AddUser")]
+        public IActionResult AddUser()
+        {
+            if(Session.isLogged)
+                return View();
+            else
+                return Redirect("/");
+        }
+
         [Route("/Home/AddReminder")]
         public IActionResult AddReminder()
         {

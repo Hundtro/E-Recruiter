@@ -1,4 +1,5 @@
 @{
+    var canConfig = ViewData["CanConfig"];
     var userName = ViewData["UserName"];
 	var reminders = ViewData["Reminders"] as List<erecruiter.Reminder>;
 }
@@ -9,7 +10,13 @@
     <div class="title">
         <p>Good day to you, @userName</p>
         <hr>
-    </div>   
+    </div>
+    @if (canConfig.ToString().Equals("1"))
+    {
+    <div class="config">
+        <input class="button button-config" type="button" value="Configuration" onclick="location.href='/Home/Configuration'"/>
+    </div>
+    }
     @if (reminders.Count!=0)
     {
     <div class="reminders">

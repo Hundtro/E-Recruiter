@@ -360,6 +360,39 @@ namespace erecruiter
             query = query.Replace("?id?", emailTemplate.Id);
             return query;
         }
+
+        public static string GetUsers()
+        {
+            string query = File.ReadAllText("Data/GetUsers.sql");
+            return query;
+        }
+
+        public static string GetUserById(string id)
+        {
+            string query = File.ReadAllText("Data/GetUserById.sql");
+            query = query.Replace("?id?", id);
+            return query;
+        }
+
+        public static string AddUser(User user)
+        {
+            string query = File.ReadAllText("Data/AddUser.sql");
+            query = query.Replace("?login?", user.Login);
+            query = query.Replace("?password?", user.Password);
+            query = query.Replace("?fullname?", user.FullName);
+           
+            if(user.CanEdit != null && user.CanEdit.Equals("on"))
+                query = query.Replace("?canedit?", "1");
+            else
+                query = query.Replace("?canedit?", "0");
+
+            if(user.CanConfig != null && user.CanConfig.Equals("on"))
+                query = query.Replace("?canconfig?", "1");
+            else
+                query = query.Replace("?canconfig?", "0");
+
+            return query;
+        }
     }
 }
 

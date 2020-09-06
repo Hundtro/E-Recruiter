@@ -81,6 +81,6 @@ CREATE TABLE HireProcess (
 
 --Create default values
 
-INSERT INTO main.User ("Login", "Password", "FullName", "CanEdit", "CanConfig") VALUES ("admin", "admin", "admin", 1, 1);  
+INSERT INTO main.User ("Login", "Password", "FullName", "CanEdit", "CanConfig") VALUES ("admin", "admin", "Admin", 1, 1);  
 INSERT INTO main.JobTitle ("Title", "DefaultSalary", "CreatedBy") VALUES ('General', 0, (SELECT Id FROM main.User WHERE Login ='admin'));
 INSERT INTO main.HireStep ("JobTitleId", "OrderNo", "Name") VALUES ((SELECT Id FROM main.JobTitle WHERE Title = 'General'), 1, 'Default');

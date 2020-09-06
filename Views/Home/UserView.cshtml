@@ -1,0 +1,12 @@
+@{
+    var user = ViewData["User"] as erecruiter.User;
+}
+
+<link rel="stylesheet" href="~/css/user.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="user">
+@user.FullName
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

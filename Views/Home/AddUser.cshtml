@@ -1,0 +1,25 @@
+@model erecruiter.User
+
+
+<link rel="stylesheet" href="~/css/add-user.css"/>
+<div class="content">
+	@await Html.PartialAsync("_Menu")
+	<div class="title">
+		<p>Add user</p>
+		<hr>
+	</div>
+	<div class="user-add">
+        <form action="/InsertUser" method="post">
+            <div class="input-title"><label for="Login">Login</label></div>
+            <div class="input-text"><input class="input" type="text" name="Login"></div>
+            <div class="input-title"><label for="Password">Password</label></div>
+            <div class="input-text"><input class="input" type="password" name="password"></div>
+            <div class="input-title"><label for="FullName">Full name</label></div>
+            <div class="input-text"><input class="input" type="text" name="FullName"></div>
+            <div class="input-check"><input type="checkbox" name="CanEdit"><label for="CanEdit">Can edit</label></div>
+            <div class="input-check"><input type="checkbox" name="CanConfig"><label for="CanConfig">Can configure</label></div>
+            <div class="input-add"><input class="button button-add" type="submit" value="Add"></div>
+        </form>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

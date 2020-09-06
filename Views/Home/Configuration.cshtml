@@ -1,0 +1,69 @@
+@model erecruiter.Configuration
+@{
+    var config = ViewData["Configuration"] as erecruiter.Configuration;
+    var users = ViewData["Users"] as List<erecruiter.User>;
+}
+
+<link rel="stylesheet" href="~/css/configuration.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>Configuration</p>
+        <hr>
+    </div>
+	<div class="config">
+        <table class="main-table">
+            <tr>
+                <td width="50%">
+                    <form class="save-form" action="/SaveConfig" method="post">
+                        <div class="info">
+                            <label for="database">Database path</label>
+                            <input type="text" name="database" value="@config.database">
+                        </div>
+                        <div class="info">
+                            <label for="emailAdress">Email adress</label>
+                            <input type="text" name="emailAdress" value="@config.emailAdress">
+                        </div>
+                        <div class="info">
+                            <label for="emailPassword">Email password </label>
+                            <input type="password" name="emailPassword" value="@config.emailPassword">
+                        </div>
+                        <div class="info">
+                            <label for="smtpHost">SmtpHost</label>
+                            <input type="text" name="smtpHost" value="@config.smtpHost">
+                        </div>
+                        <div class="info">
+                            <label for="smtpPort">SmtpPort</label>
+                            <input type="text" name="smtpPort" value="@config.smtpPort">
+                        </div>
+                        <div class="save-div">
+                            <input class="button button-save" type="submit" value="Save">
+                        </div>
+                    </form>
+                </td>
+                <td width="50%">
+                    <div class=users>
+                        <table class="user-table">
+                           @for(int i = 0; i < users.Count; i++)
+                           {
+                           <tr>
+                              <td width="70%">@users[i].FullName</td>
+                              <td width="25%">
+                                  <form class="user-form" action="/ViewUser" method="post">
+                                      <input type="hidden" name="id" value="@users[i].Id"/>
+                                      <input class="button button-view" type="submit" value="View"/>
+                                  </form>
+                              </td>
+                           </tr>
+                           }
+                        </table>   
+                    </div>
+                    <input class="button button-add" type="button" value="Add user"
+                     onclick="location.href='/Home/AddUser'"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>
+
