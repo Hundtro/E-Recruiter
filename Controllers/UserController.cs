@@ -76,6 +76,24 @@ namespace erecruiter
             ViewData["User"] = user;
             return View("~/Views/Home/UserView.cshtml");
         }
+
+        [HttpPost]
+        [Route("/UpdateUser")]
+        public IActionResult UpdateUser(User user)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.UpdateUser(user));
+
+            return Redirect("/Home/Configuration");
+        }
+
+        [HttpPost]
+        [Route("/DeleteUser")]
+        public IActionResult DeleteUser(string id)
+        {
+            dbAdapter.ExecuteCommand(SqlProcedures.DeleteUser(id));
+
+            return Redirect("/Home/Configuration");
+        }
     }
 }
 	

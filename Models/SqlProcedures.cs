@@ -393,6 +393,41 @@ namespace erecruiter
 
             return query;
         }
+
+        public static string UpdateUser(User user)
+        {
+            string query = File.ReadAllText("Data/UpdateUser.sql");
+            query = query.Replace("?id?", user.Id);
+            query = query.Replace("?login?", user.Login);
+            query = query.Replace("?password?", user.Password);
+            query = query.Replace("?fullname?", user.FullName);
+           
+            if(user.CanEdit != null && user.CanEdit.Equals("on"))
+                query = query.Replace("?canedit?", "1");
+            else
+                query = query.Replace("?canedit?", "0");
+
+            if(user.CanConfig != null && user.CanConfig.Equals("on"))
+                query = query.Replace("?canconfig?", "1");
+            else
+                query = query.Replace("?canconfig?", "0");
+            return query;
+        }
+
+        public static string DeleteUser(string id)
+        {
+            string query = File.ReadAllText("Data/DeleteUser.sql");
+            query = query.Replace("?id?", id);
+            return query;
+        }
+
+        public static string FindProcess(string candidate, string title)
+        {
+            string query = File.ReadAllText("Data/FindProcess.sql");
+            query = query.Replace("?candidate?", candidate);
+            query = query.Replace("?title?", title);
+            return query;
+        }
     }
 }
 

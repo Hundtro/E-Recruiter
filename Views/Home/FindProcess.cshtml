@@ -1,0 +1,48 @@
+@{
+	var hireProcesses = ViewData["HireProcesses"] as List<erecruiter.HireProcess>;
+}
+
+<link rel="stylesheet" href="~/css/find-process.css"/>
+<div class="content">
+    @await Html.PartialAsync("_Menu")
+    <div class="title">
+        <p>Find hire process</p>
+        <hr>
+    </div>
+    <div class="find-process">
+        <form action="/FindProcess" method="post">
+            <table class="find-table">
+                <tr>
+                    <td>Candidate <input type="text" name="candidate"></td>
+                    <td>Job title <input type="text" name="title"></td>
+                    <td><input type="submit" class="button button-find" value="Find"></td>
+                </tr>
+            </table> 
+        </form>
+    </div>
+    <div class="find-results">
+    @if (hireProcesses.Count != 0)
+    {
+        <table class="results-table">
+        @for (int i = 0; i < hireProcesses.Count; i++)
+        {
+            <tr>
+                <td>@hireProcesses[i].CandidateName</td>
+                <td>@hireProcesses[i].JobTitleName</td>
+                <td>
+                    <form class="view-form" action="/ViewHireProcess" method="post">
+                        <input type="hidden" name="hireProcessId" value="@hireProcesses[i].Id"/>
+                        <input class="button button-view" type="submit" value="View"/>
+                    </form>
+                </td>
+            </tr>
+        }
+        </table>
+    }
+    else
+    {
+        <p>No hire processes found</p>
+    }
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

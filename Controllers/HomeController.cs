@@ -96,6 +96,20 @@ namespace erecruiter
                 return Redirect("/");
         }
 
+        [Route("/Home/UpdateUser")]
+        public IActionResult UpdateUser(string id)
+        {
+            if(Session.isLogged)
+            {
+                ViewData["User"] = new UserController(this.configuration).GetUserById(id);
+                return View();
+            }
+            else
+            {
+                return Redirect("/");
+            }   
+        }
+
         [Route("/Home/AddReminder")]
         public IActionResult AddReminder()
         {
@@ -228,6 +242,20 @@ namespace erecruiter
             }
         }
 
+        [Route("/Home/FindProcess")]
+        public IActionResult FindProcess()
+        {
+            if(Session.isLogged)
+            {
+               ViewData["HireProcesses"] = new HireProcessController(this.configuration).FindProcess("", "");
+               return View();
+            }
+            else
+            {
+               return Redirect("/");
+            }
+        }
+
         [Route("/Home/ContactCandidate")]
         public IActionResult ContactCandidate(string title, string text)
         {
@@ -265,8 +293,6 @@ namespace erecruiter
                 ViewData["ErrorText"] = "An error occured while sending email";
                 return View("~/Views/Shared/_Error.cshtml");
             }
-  
-            
         }
 
         [Route("/Home/AddEmailTemplate")]
@@ -296,7 +322,6 @@ namespace erecruiter
             }
         }
 
-         
         [Route("/Logout")]
         public IActionResult Logout()
         {

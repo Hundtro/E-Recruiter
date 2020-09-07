@@ -113,6 +113,26 @@ namespace erecruiter
             dbAdapter.ExecuteCommand(SqlProcedures.AddHireProcess(candidateId, jobTitleId));
 
             return Redirect("/Home/ManageRecruitment");
-        } 
+        }
+
+        public List<HireProcess> FindProcess(string candidate, string title)
+		{
+			List<HireProcess> hireProcesses = new List<HireProcess>();
+
+			dbAdapter.ExecuteSelectCommand(SqlProcedures.FindProcess(candidate, title));
+            while(dbAdapter.MoveToNextRow())
+            {
+                HireProcess hireProcess = new HireProcess();
+                
+                hireProcess.Id = dbAdapter.GetColumnValue("Id");
+                hireProcess.CandidateName = dbAdapter.GetColumnValue("Candidate");
+                hireProcess.JobTitleName = dbAdapter.GetColumnValue("Title");
+
+                hireProcesses.Add(hireProcess);
+            }
+            dbAdapter.ClearData();
+
+            return hireProcesses;
+        }
     }
 }

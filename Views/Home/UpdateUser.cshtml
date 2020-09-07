@@ -1,0 +1,42 @@
+@model erecruiter.User
+@{
+    var user = ViewData["User"] as erecruiter.User;
+}
+
+<link rel="stylesheet" href="~/css/update-user.css"/>
+<div class="content">
+	@await Html.PartialAsync("_Menu")
+	<div class="title">
+		<p>Update user - @user.FullName</p>
+		<hr>
+	</div>
+	<div class="user-edit">
+        <form action="/UpdateUser" method="post">
+            <input type="hidden" name="id" value="@user.Id"/>
+            <div class="input-title"><label for="Login">Login</label></div>
+            <div class="input-text"><input class="input" type="text" name="Login" value="@user.Login"></div>
+            <div class="input-title"><label for="Password">Password</label></div>
+            <div class="input-text"><input class="input" type="password" name="password" value="@user.Password"></div>
+            <div class="input-title"><label for="FullName">Full name</label></div>
+            <div class="input-text"><input class="input" type="text" name="FullName" value="@user.FullName"></div>
+            @if (user.CanEdit.Equals("1"))
+            {
+            <div class="input-check"><input type="checkbox" name="CanEdit" checked><label for="CanEdit">Can edit</label></div>
+            }
+            else
+            {
+            <div class="input-check"><input type="checkbox" name="CanEdit"><label for="CanEdit">Can edit</label></div>
+            }
+            @if (user.CanConfig.Equals("1"))
+            {
+            <div class="input-check"><input type="checkbox" name="CanConfig" checked><label for="CanConfig">Can configure</label></div>
+            }
+            else
+            {
+            <div class="input-check"><input type="checkbox" name="CanConfig"><label for="CanConfig">Can configure</label></div>
+            }
+            <div class="input-edit"><input class="button button-edit" type="submit" value="Save"></div>
+        </form>
+    </div>
+    @await Html.PartialAsync("_Footer")
+</div>

@@ -6,7 +6,50 @@
 <div class="content">
     @await Html.PartialAsync("_Menu")
     <div class="user">
-@user.FullName
+        <div class="info">
+            Login: @user.Login
+        </div>
+        <div class="info">
+            Full name: @user.FullName
+        </div>
+        <div class="info">
+            @if (user.CanEdit.Equals("1"))
+            {
+            <p>Can edit: yes</p>
+            }
+            else
+            {
+            <p>Can edit: no</p>
+            }
+        </div>
+        <div class="info">
+            @if (user.CanConfig.Equals("1"))
+            {
+            <p>Can configure: yes</p>
+            }
+            else
+            {
+            <p>Can configure: no</p>
+            }
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td width="50%">
+                        <form action="/Home/UpdateUser" method="post">
+                            <input type="hidden" name="id" value="@user.Id"/>
+                            <input class="button button-user" type="submit" value="Edit"/>
+                        </form>
+                    </td>
+                    <td width="50%">
+                        <form action="/DeleteUser" method="post">
+                            <input type="hidden" name="id" value="@user.Id"/>
+                            <input class="button button-user" type="submit" value="Delete"/>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
     @await Html.PartialAsync("_Footer")
 </div>
