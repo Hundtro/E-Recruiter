@@ -279,7 +279,7 @@ namespace erecruiter
        
         [HttpPost]
         [Route("/SendEmail")]
-        public IActionResult ViewHireProcess(string subject, string text, string adress)
+        public IActionResult SendEmail(string subject, string text, string adress)
         {
             try
             {
